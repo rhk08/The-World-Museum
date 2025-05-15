@@ -30,13 +30,14 @@ const Custom = () => {
       gsap.to('.box-d', {
         scale: 1.5,
         opacity: 1,
-        rotation: 1240,
+        rotation: 100000,
         scrollTrigger: {
           trigger: '.box-d',
           start: 'center center',  // correct spelling
-          end: '+=300',
+          end: '+=600',
           scrub: true,             // enables smooth reverse animation
           markers: true,
+          pin: true,
         },
       });
 
