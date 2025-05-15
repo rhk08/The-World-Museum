@@ -22,7 +22,7 @@ body {
   overflow: visible;
   width: 100%;
   /* set a height because the contents are position: absolute, thus natively there's no height */
-  height: 4000px;
+  height: 8000px;
 
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.07) 2px,
@@ -67,6 +67,11 @@ button {
 
 .box-c {
   top: 1000px;
+}
+
+.box-d {
+  top: 2000px;
+  opacity: 0.5;
 }
 
 .line {
@@ -114,6 +119,7 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
+  /* background-color: black; */
 }
 
 header ul {

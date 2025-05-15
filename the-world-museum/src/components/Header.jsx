@@ -23,6 +23,9 @@ export default function Header() {
           <Link to="/">Boxes</Link>
         </li>
         <li>
+          <Link to="/custom">Custom</Link>
+        </li>
+        <li>
           <Link to="/images">Images</Link>
         </li>
       </ul>

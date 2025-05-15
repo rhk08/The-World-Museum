@@ -1,4 +1,4 @@
-import Router from './router/Router';
+import Router from './router/RouterDepreciated';
 import Header from './components/Header';
 
 import gsap from 'gsap';

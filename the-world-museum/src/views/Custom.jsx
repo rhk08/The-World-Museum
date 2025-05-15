@@ -1,14 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef , useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useGSAP } from '@gsap/react';
 
-
-gsap.registerPlugin(ScrollTrigger);
-
-const HomePage = () => {
+const Custom = () => {
   const container = useRef();
+
+  const scrollTo = () => {
+    const smoother = ScrollSmoother.get();
+    if (smoother) {
+      smoother.scrollTo('.box-c', true, 'center center');
+    }
+  };
 
   
   useGSAP(
@@ -19,23 +23,23 @@ const HomePage = () => {
         start: 'center center',
         end: '+=300',
         pin: true,
-        scrub: true,
         markers: true,
       });
 
-      // // New horizontal scroll for .box-d
-      // gsap.to('.box-d', {
-      //   scale: 1.5,
-      //   opacity: 1,
-      //   scrollTrigger: {
-      //     trigger: '.box-d',
-      //     start: 'center center',
-      //     end: '+=300',
-      //     pin: true,
-      //     scrub: true,             
-      //     markers: true,
-      //   },
-      // });
+      // New horizontal scroll for .box-d
+      gsap.to('.box-d', {
+        scale: 1.5,
+        opacity: 1,
+        rotation: 1240,
+        scrollTrigger: {
+          trigger: '.box-d',
+          start: 'center center',  // correct spelling
+          end: '+=300',
+          scrub: true,             // enables smooth reverse animation
+          markers: true,
+        },
+      });
+
     },
     { scope: container }
   );
@@ -50,6 +54,10 @@ const HomePage = () => {
             <i>React</i> <i>Router</i>
           </strong>
         </p>
+
+        <button className="button" onClick={scrollTo}>
+              Jump to C
+        </button>
       </div>
 
 
@@ -59,8 +67,7 @@ const HomePage = () => {
       <div className="box box-b gradient-orange" data-speed="0.8">
         b
       </div>
-      {/* DO NOT MAKE SCROLL TRIGGERS WHEN DATA-SPEED != 1.0 */}
-      <div className="box box-c gradient-purple" data-speed="1.0"> 
+      <div className="box box-c gradient-purple" data-speed="1">
         c
       </div>
 
@@ -75,4 +82,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Custom;
