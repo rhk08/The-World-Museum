@@ -70,34 +70,45 @@ const HomePage = () => {
           }
         });
       });
-
-      // ScrollTrigger for video appearance
+      // Step 1: Animate video on scroll
       gsap.from(".video-banner video", {
         opacity: 0,
         scale: 0.9,
-
         scrollTrigger: {
           trigger: ".video-banner",
           start: "top bottom",    // when the video enters the viewport
           end: "top center",      // animation completes at center
-          scrub: true,            // tie animation to scroll position
-          markers: true           // remove in production
+          scrub: true,
+          markers: true,
+          onEnter: () => enableHoverAnimation(), // Enable hover animation only once visible
         }
       });
 
-      gsap.from(".video-banner video", {
-        opacity: 0,
-        scale: 0.9,
+      // Step 2: Define hover animation (initially disabled)
+      function enableHoverAnimation() {
+        const video = document.querySelector(".video-banner video");
 
-        scrollTrigger: {
-          trigger: ".video-banner",
-          start: "top bottom",    // when the video enters the viewport
-          end: "top center",      // animation completes at center
-          scrub: true,            // tie animation to scroll position
-          markers: true           // remove in production
+        // Add hover listeners only once
+        if (!video.dataset.hoverBound) {
+          video.dataset.hoverBound = true;
+
+          video.addEventListener("mouseenter", () => {
+            gsap.to(video, {
+              scale: 1.05,
+              duration: 0.4,
+              ease: "power2.out"
+            });
+          });
+
+          video.addEventListener("mouseleave", () => {
+            gsap.to(video, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power2.out"
+            });
+          });
         }
-      });
-
+      }
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -114,6 +125,8 @@ const HomePage = () => {
         .from('.image', { scale: 0.8, opacity: 0 });
 
 
+
+      //sequence
       const tl0 = gsap.timeline({
         scrollTrigger: {
           trigger: '.pinned-section0',

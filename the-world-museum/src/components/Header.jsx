@@ -18,7 +18,7 @@ export default function Header() {
 
         <img
           className="greensock-icon"
-          src="../images/logos/PwC-logo.svg"
+          src="../images/logos/pwc_logo2x.png"
           width="80"
           alt=""
         />
