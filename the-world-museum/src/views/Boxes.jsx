@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
 import { useGSAP } from '@gsap/react';
-
+import './Homepage.css';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
 
 const HomePage = () => {
   const container = useRef();
@@ -36,6 +38,79 @@ const HomePage = () => {
       //     markers: true,
       //   },
       // });
+      const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
+      document.fonts.ready.then(() => {
+        gsap.set(".split", { opacity: 1 });
+
+        const split = SplitText.create(".split", {
+          type: "words",
+          wordsClass: "word",
+          prepareText: (text, el) => {
+            return [...segmenter.segment(text)].map(s => s.segment).join(String.fromCharCode(8204))
+          },
+          wordDelimiter: { delimiter: /\u200c/, replaceWith: " " },
+          autoSplit: true,
+          onSplit: (self) => {
+          gsap.from(self.words, {
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "none",
+
+            scrollTrigger: {
+              trigger: ".split",
+              start: "top bottom",
+              end: "+=1000", // Defines how long the scroll animation lasts
+              scrub: true,       // Tie animation progress to scroll position
+              markers: true      // Remove in production
+            },// Use 'none' or very light easing for scrub
+          });
+          }
+        });
+      });
+      
+      // ScrollTrigger for video appearance
+      gsap.from(".video-banner video", {
+        opacity: 0,
+        scale: 0.9,
+
+        scrollTrigger: {
+          trigger: ".video-banner",
+          start: "top bottom",    // when the video enters the viewport
+          end: "top center",      // animation completes at center
+          scrub: true,            // tie animation to scroll position
+          markers: true           // remove in production
+        }
+      });
+
+      gsap.from(".video-banner video", {
+        opacity: 0,
+        scale: 0.9,
+        
+        scrollTrigger: {
+          trigger: ".video-banner",
+          start: "top bottom",    // when the video enters the viewport
+          end: "top center",      // animation completes at center
+          scrub: true,            // tie animation to scroll position
+          markers: true           // remove in production
+        }
+      });
+
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.pinned-section',
+          start: 'top top',
+          end: '+=1000',
+          scrub: true,
+          pin: true,
+          markers: true,
+        }
+      });
+
+      tl.from('.text', { opacity: 0, y: 50 })
+        .from('.image', { scale: 0.8, opacity: 0 });
+
     },
     { scope: container }
   );
@@ -69,6 +144,34 @@ const HomePage = () => {
 
       <div className="box box-d" data-speed="1">
         d
+      </div>
+
+      <div className="container0">
+        <h1 className="split">我真的很喜欢使用GSAP制作酷炫的动画效果</h1>
+      </div>
+
+      <div className="video-banner">
+        <video
+          src="../../public/videos/world_museum_video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="content">
+          <h1>Welcome to the World Museum</h1>
+          <p>Explore history like never before</p>
+        </div>
+      </div>
+
+
+      <div className="pinned-section">
+        <h2 className="text">Scroll-Triggered Animation</h2>
+        <img
+          className="image"
+          src="../../public/images/antiquities.jpg"
+          alt="Kitten"
+        />
       </div>
 
     </main>
