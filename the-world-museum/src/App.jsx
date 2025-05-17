@@ -4,9 +4,10 @@ import Header from './components/Header';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger, SplitText,  useGSAP);
 
 export default function App() {
   return (

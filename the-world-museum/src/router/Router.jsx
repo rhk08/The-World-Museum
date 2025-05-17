@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
 import Boxes from '../views/Boxes';
@@ -15,6 +16,11 @@ export default function Router() {
   const location = useLocation();
 
   useGSAP(() => {
+
+    if (ScrollSmoother.get()) {
+      ScrollSmoother.get().kill();
+    }
+    ScrollSmoother.create({ smooth: 2, effects: true });
     ScrollSmoother.create({
       smooth: 2,
       effects: true,

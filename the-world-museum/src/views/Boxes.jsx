@@ -6,12 +6,8 @@ import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 import './Homepage.css';
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
-
 const HomePage = () => {
   const container = useRef();
-
 
   useGSAP(
     () => {
@@ -25,22 +21,28 @@ const HomePage = () => {
         markers: true,
       });
 
-      // // New horizontal scroll for .box-d
-      // gsap.to('.box-d', {
-      //   scale: 1.5,
-      //   opacity: 1,
-      //   scrollTrigger: {
-      //     trigger: '.box-d',
-      //     start: 'center center',
-      //     end: '+=300',
-      //     pin: true,
-      //     scrub: true,             
-      //     markers: true,
-      //   },
-      // });
+      // New horizontal scroll for .box-d
+      gsap.to('.box-d', {
+        scale: 1.5,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: '.box-d',
+          start: 'center center',
+          end: '+=300',
+          pin: true,
+          scrub: true,
+          markers: true,
+        },
+      });
+
+
       const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
       document.fonts.ready.then(() => {
-        gsap.set(".split", { opacity: 1 });
+        const splitEl = document.querySelector(".split");
+        if (!splitEl) return; // Abort if the element is gone (navigated away)
+
+        gsap.set(splitEl, { opacity: 1 });
+
 
         const split = SplitText.create(".split", {
           type: "words",
@@ -135,6 +137,16 @@ const HomePage = () => {
         ease: 'back.out(1.7)'
       }, "-=0.3"); // Slight overlap with previous animation
 
+
+      return () => {
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.trigger === document.querySelector(".split")) {
+            trigger.kill();
+          }
+        });
+      };
+
+      
     },
     { scope: container }
   );
