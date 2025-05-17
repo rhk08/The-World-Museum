@@ -11,8 +11,15 @@ export default function Header() {
       >
         <img
           className="greensock-icon"
-          src="https://gsap.com/_img/codepen/gsap-white.svg"
-          width="100"
+          src="../images/logos/nml-rhodamine-large.svg"
+          width="150"
+          alt=""
+        />
+
+        <img
+          className="greensock-icon"
+          src="../images/logos/PwC-logo.svg"
+          width="80"
           alt=""
         />
       </a>

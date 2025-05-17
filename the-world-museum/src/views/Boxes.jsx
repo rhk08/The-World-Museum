@@ -138,6 +138,8 @@ const HomePage = () => {
       }, "-=0.3"); // Slight overlap with previous animation
 
 
+
+      //When componenet demounts from the div this runs
       return () => {
         ScrollTrigger.getAll().forEach(trigger => {
           if (trigger.trigger === document.querySelector(".split")) {
@@ -146,7 +148,7 @@ const HomePage = () => {
         });
       };
 
-      
+
     },
     { scope: container }
   );
