@@ -22,7 +22,7 @@ body {
   overflow: visible;
   width: 100%;
   /* set a height because the contents are position: absolute, thus natively there's no height */
-  height: 8000px;
+  height: 10000px;
 
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.07) 2px,

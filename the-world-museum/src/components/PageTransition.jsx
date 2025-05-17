@@ -12,17 +12,10 @@ export default function PageTransition({ children }) {
       gsap.fromTo(
         container.current,
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
       );
 
-      return () => {
-        gsap.to(container.current, {
-          opacity: 0,
-          y: -50,
-          duration: 0.4,
-          ease: 'power2.inOut',
-        });
-      };
+      return () => {};
     }, container);
 
     return () => ctx.revert();

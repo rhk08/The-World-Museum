@@ -12,7 +12,7 @@ gsap.registerPlugin(SplitText);
 const HomePage = () => {
   const container = useRef();
 
-  
+
   useGSAP(
     () => {
       // Existing pin for .box-c
@@ -51,24 +51,24 @@ const HomePage = () => {
           wordDelimiter: { delimiter: /\u200c/, replaceWith: " " },
           autoSplit: true,
           onSplit: (self) => {
-          gsap.from(self.words, {
-            y: 50,
-            opacity: 0,
-            stagger: 0.1,
-            ease: "none",
+            gsap.from(self.words, {
+              y: 50,
+              opacity: 0,
+              stagger: 0.1,
+              ease: "none",
 
-            scrollTrigger: {
-              trigger: ".split",
-              start: "top bottom",
-              end: "+=1000", // Defines how long the scroll animation lasts
-              scrub: true,       // Tie animation progress to scroll position
-              markers: true      // Remove in production
-            },// Use 'none' or very light easing for scrub
-          });
+              scrollTrigger: {
+                trigger: ".split",
+                start: "top bottom",
+                end: "+=1000", // Defines how long the scroll animation lasts
+                scrub: true,       // Tie animation progress to scroll position
+                markers: true      // Remove in production
+              },// Use 'none' or very light easing for scrub
+            });
           }
         });
       });
-      
+
       // ScrollTrigger for video appearance
       gsap.from(".video-banner video", {
         opacity: 0,
@@ -86,7 +86,7 @@ const HomePage = () => {
       gsap.from(".video-banner video", {
         opacity: 0,
         scale: 0.9,
-        
+
         scrollTrigger: {
           trigger: ".video-banner",
           start: "top bottom",    // when the video enters the viewport
@@ -111,10 +111,34 @@ const HomePage = () => {
       tl.from('.text', { opacity: 0, y: 50 })
         .from('.image', { scale: 0.8, opacity: 0 });
 
+
+      const tl0 = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.pinned-section0',
+          start: 'top top',
+          end: '+=1000',
+          scrub: true,
+          pin: true,
+          markers: true,
+        }
+      });
+
+      tl0.from('.text', {
+        opacity: 0,
+        y: 50
+      });
+
+      tl0.to('.gallery-image', {
+        opacity: 1,
+        scale: 1,
+        stagger: 0.3, // Images pop one-by-one
+        ease: 'back.out(1.7)'
+      }, "-=0.3"); // Slight overlap with previous animation
+
     },
     { scope: container }
   );
-  
+
   return (
     <main className="home" ref={container}>
       <div className="header">
@@ -135,7 +159,7 @@ const HomePage = () => {
         b
       </div>
       {/* DO NOT MAKE SCROLL TRIGGERS WHEN DATA-SPEED != 1.0 */}
-      <div className="box box-c gradient-purple" data-speed="1.0"> 
+      <div className="box box-c gradient-purple" data-speed="1.0">
         c
       </div>
 
@@ -172,6 +196,16 @@ const HomePage = () => {
           src="../../public/images/antiquities.jpg"
           alt="Kitten"
         />
+      </div>
+
+
+      <div className="pinned-section0">
+        <h2 className="text">Gallery Reveal</h2>
+        <div className="image-row">
+          <img className="gallery-image" src="../../public/images/antiquities.jpg" alt="1" />
+          <img className="gallery-image" src="../../public/images/antiquities.jpg" alt="2" />
+          <img className="gallery-image" src="../../public/images/antiquities.jpg" alt="3" />
+        </div>
       </div>
 
     </main>
