@@ -193,7 +193,7 @@ const HomePage = () => {
         <h2 className="text">Scroll-Triggered Animation</h2>
         <img
           className="image"
-          src="../../public/images/antiquities.jpg"
+          src="../images/antiquities.jpg"
           alt="Kitten"
         />
       </div>
@@ -202,9 +202,9 @@ const HomePage = () => {
       <div className="pinned-section0">
         <h2 className="text">Gallery Reveal</h2>
         <div className="image-row">
-          <img className="gallery-image" src="../../public/images/antiquities.jpg" alt="1" />
-          <img className="gallery-image" src="../../public/images/antiquities.jpg" alt="2" />
-          <img className="gallery-image" src="../../public/images/antiquities.jpg" alt="3" />
+          <img className="gallery-image" src="../images/antiquities.jpg" alt="1" />
+          <img className="gallery-image" src="../images/antiquities.jpg" alt="2" />
+          <img className="gallery-image" src="../images/antiquities.jpg" alt="3" />
         </div>
       </div>
 
