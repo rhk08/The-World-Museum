@@ -9,8 +9,38 @@ import './Homepage.css';
 const HomePage = () => {
   const container = useRef();
 
+  const splitRef = useRef(null);
+  const triggerRef = useRef(null);
+
   useGSAP(
     () => {
+
+      const splitEl = container.current?.querySelector(".split");
+      if (!splitEl) return;
+
+      document.fonts.ready.then(() => {
+        splitRef.current = SplitText.create(splitEl, {
+          type: "words",
+          wordsClass: "word"
+        });
+
+        triggerRef.current = ScrollTrigger.create({
+          trigger: splitEl,
+          start: "top bottom",
+          end: "+=1000",
+          scrub: true,
+          markers: true,
+          animation: gsap.from(splitRef.current.words, {
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "none"
+          })
+        });
+      });
+
+
+
       // Existing pin for .box-c
       ScrollTrigger.create({
         trigger: '.box-c',
@@ -35,41 +65,6 @@ const HomePage = () => {
         },
       });
 
-
-      const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
-      document.fonts.ready.then(() => {
-        const splitEl = document.querySelector(".split");
-        if (!splitEl) return; // Abort if the element is gone (navigated away)
-
-        gsap.set(splitEl, { opacity: 1 });
-
-
-        const split = SplitText.create(".split", {
-          type: "words",
-          wordsClass: "word",
-          prepareText: (text, el) => {
-            return [...segmenter.segment(text)].map(s => s.segment).join(String.fromCharCode(8204))
-          },
-          wordDelimiter: { delimiter: /\u200c/, replaceWith: " " },
-          autoSplit: true,
-          onSplit: (self) => {
-            gsap.from(self.words, {
-              y: 50,
-              opacity: 0,
-              stagger: 0.1,
-              ease: "none",
-
-              scrollTrigger: {
-                trigger: ".split",
-                start: "top bottom",
-                end: "+=1000", // Defines how long the scroll animation lasts
-                scrub: true,       // Tie animation progress to scroll position
-                markers: true      // Remove in production
-              },// Use 'none' or very light easing for scrub
-            });
-          }
-        });
-      });
       // Step 1: Animate video on scroll
       gsap.from(".video-banner video", {
         opacity: 0,
@@ -153,17 +148,17 @@ const HomePage = () => {
 
 
       //When componenet demounts from the div this runs
-      return () => {
-        ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === document.querySelector(".split")) {
-            trigger.kill();
-          }
-        });
-      };
+      // return () => {
+      //   ScrollTrigger.getAll().forEach(trigger => {
+      //     if (trigger.trigger === document.querySelector(".split")) {
+      //       console.log(trigger)
+      //     }
+      //   });
+      // };
 
 
     },
-    { scope: container }
+    { scope: container, revertOnUpdate: true }
   );
 
   return (
@@ -186,8 +181,8 @@ const HomePage = () => {
         b
       </div>
       {/* DO NOT MAKE SCROLL TRIGGERS WHEN DATA-SPEED != 1.0 */}
-      <div className="box box-c gradient-purple" data-speed="1.0">
-        c
+      <div className="box box-c gradient-purple" data-speed="1">
+        d
       </div>
 
       <div className="line"></div>
@@ -198,12 +193,12 @@ const HomePage = () => {
       </div>
 
       <div className="container0">
-        <h1 className="split">我真的很喜欢使用GSAP制作酷炫的动画效果</h1>
+        <h1 className="split">hello hello hello hello hello hello hello hello</h1>
       </div>
 
       <div className="video-banner">
         <video
-          src="../../public/videos/world_museum_video.mp4"
+          src="../videos/world_museum_video.mp4"
           autoPlay
           muted
           loop

@@ -20,11 +20,10 @@ export default function Router() {
     if (ScrollSmoother.get()) {
       ScrollSmoother.get().kill();
     }
-    ScrollSmoother.create({ smooth: 2, effects: true });
     ScrollSmoother.create({
       smooth: 2,
       effects: true,
-    });
+    });    
   }, [location]);
 
   return (

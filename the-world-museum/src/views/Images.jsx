@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ImagesPage = () => {
+  
   return (
     <main className="images">
       <section className="image-grid container">
