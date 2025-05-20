@@ -432,8 +432,8 @@
 }
 
 body {
-  color: var(--color-surface-white);
-  background-color: var(--dark);
+  color: var(--black);
+  background-color: var(--beige);
   font-family: sans-serif;
   font-weight: 400;
   margin: 0;

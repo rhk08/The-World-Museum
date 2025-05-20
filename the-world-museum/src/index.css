@@ -24,13 +24,11 @@ body {
   /* set a height because the contents are position: absolute, thus natively there's no height */
   height: 10000px;
 
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.07) 2px,
-      transparent 4px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 2px, transparent 2px),
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(var(--tinted-beige-rgb), 0.2) 2px,
+      transparent 4px),
+    linear-gradient(90deg, rgba(var(--tinted-beige-rgb), 0.2) 2px, transparent 2px),
+    linear-gradient(rgba(var(--tinted-beige-rgb), 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--tinted-beige-rgb), 0.2) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
@@ -96,7 +94,7 @@ footer {
   padding: 6px 10px 10px 12px;
   border-top-left-radius: 26px;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.0);
 }
 
 .end {
@@ -127,7 +125,9 @@ header ul {
   margin: 0;
   padding: 0 1rem;
   display: flex;
-  gap: 1rem;
+  gap: 0rem;
+
+  transform: translate(10px, -10px);
 }
 
 header ul li {
@@ -135,15 +135,19 @@ header ul li {
 }
 
 header ul a {
-  color: var(--light);
+  color: var(--black);
   font-weight: normal;
   text-decoration: none;
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0rem 1rem;
 }
 
 header .icon {
   padding-left: 1rem;
+}
+
+header .icon:hover {
+  text-decoration: none;
 }
 
 /* IMAGES */

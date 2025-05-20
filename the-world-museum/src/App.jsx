@@ -1,5 +1,6 @@
 import Router from './router/Router';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,6 +15,7 @@ export default function App() {
     <>
       <Header />
       <Router />
+      <Footer />
     </>
   );
 }
