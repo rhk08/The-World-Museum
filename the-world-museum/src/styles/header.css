@@ -9,6 +9,7 @@ header .text-logo {
 
 header .text-logo .subtext {
     padding-left: 1.5rem;
+    text-decoration: none;
 }
 
 .hover-underline-animation {

@@ -13,9 +13,9 @@ export default function footer() {
                 rel="noreferrer"
             >
                 <img
-                    className="PwC-Icon"
+                    className="PwC-Icon image"
                     src="../images/logos/PwC-logo.svg"
-                    width="70"
+                    width="65"
                     alt=""
                 />
             </a>
@@ -27,9 +27,9 @@ export default function footer() {
                 rel="noreferrer"
             >
                 <img
-                    className="The-World-Museum-Icon"
+                    className="The-World-Museum-Icon image"
                     src="../images/logos/nml-rhodamine-large.svg"
-                    width="120"
+                    width="110"
                     alt=""
                 />
             </a>
