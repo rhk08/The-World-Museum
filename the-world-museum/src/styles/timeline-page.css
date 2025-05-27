@@ -1,0 +1,151 @@
+.tp-timeline-start{
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 100;
+    position: absolute;
+
+    width: 30%;
+    will-change: transform;
+
+    box-sizing: border-box;
+
+    border-style: solid;
+    border-color: var(--tinted-beige);
+    border-width: 2px;
+    border-radius: 15px;
+    
+    background-color: var(--beige);
+
+    text-align: center;
+    top: 90px;
+}
+.tp-timeline{
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 100;
+    position: absolute;
+
+    width: 2px;
+    height: 5845px;
+    will-change: transform;
+
+    box-sizing: border-box;
+
+    border-radius: 15px;
+    background-color: var(--tinted-beige);
+
+    text-align: center;
+    top: 135px;
+}
+.tp-timeline-end{
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 100;
+    position: absolute;
+
+    width: 30%;
+    will-change: transform;
+
+    box-sizing: border-box;
+
+    border-style: solid;
+    border-color: var(--tinted-beige);
+    border-width: 2px;
+    border-radius: 15px;
+
+    background-color: var(--beige);
+
+    text-align: center;
+    top: 5990px;
+}
+
+
+.tp-a{
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 100;
+    position: absolute;
+
+    width: 45%;
+    height: 700px;
+    will-change: transform;
+
+    box-sizing: border-box;
+
+    border-style: solid;
+    border-color: var(--black);
+    border-width: 1px;
+    border-radius: 15px;
+    top: 150px;
+}
+.tp-a-l{
+    z-index: 100;
+    position: absolute;
+
+    width: 48%;
+    left: 0;
+    height: 100%;
+    will-change: transform;
+
+    box-sizing: border-box;
+
+
+    /* border-style: solid; */
+    border-color: var(--black);
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+.tp-a-l-1{
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    background-color: var(--dark-beige);
+}
+
+.tp-a-l-1-title{
+    text-align: left;
+    color: var(--beige);
+
+    margin-left: 15px;
+}
+
+.tp-a-l-1-text{
+    text-align: justify;
+    color: var(--beige);
+
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.tp-a-r{
+    z-index: 100;
+    position: absolute;
+
+    width: 48%;
+    height: 100%;
+    right: 0;
+    will-change: transform;
+
+    box-sizing: border-box;
+
+    /* border-style: solid; */
+    border-color: var(--black);
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+.tp-a-r-title{
+    text-align: left;
+    color: var(--black);
+}
+
+.tp-a-r-text{
+    text-align: justify;
+    transform: translateY(-10px);
+    color: var(--black);
+}

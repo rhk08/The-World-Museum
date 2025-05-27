@@ -125,7 +125,6 @@ const Problempage = () => {
       
 
       <div className='f'>
-
         
       </div>
 
