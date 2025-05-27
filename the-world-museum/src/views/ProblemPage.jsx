@@ -5,7 +5,6 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SplitText } from 'gsap/SplitText';
 
 import { useGSAP } from '@gsap/react';
-import './Homepage.css';
 import '../styles/problem-page.css';
 
 const Problempage = () => {
@@ -20,18 +19,31 @@ const Problempage = () => {
 
   return (
     <main className="home" ref={container}>
-      <div className="info-element a">
-        <h1 className="title font-inria-serif-bold font-size-64">1. The Problem</h1>
-        <p className='font-instrument-sans font-size-20'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu eros erat. Vestibulum vitae aliquet nunc. Donec gravida nulla vitae enim laoreet placerat vel ac ex. Nulla facilisi. Pellentesque lacus justo, laoreet sit amet lacus ut, molestie congue velit. Maecenas quis lacinia quam, a elementum tortor. Quisque vulputate consectetur laoreet. Phasellus magna est, faucibus eu congue ac, euismod vitae mi.
-        </p>
-      </div>
+      <div className="a">
+        <div className="a-1">
+          <p className="a-1-title font-inria-serif-bold font-size-48">The Problem.</p>
 
-      <div className="info-element b">
-        <h1 className="title font-inria-serif-bold font-size-64">1. The Problem</h1>
-        <p className='font-instrument-sans font-size-20'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu eros erat. Vestibulum vitae aliquet nunc. Donec gravida nulla vitae enim laoreet placerat vel ac ex. Nulla facilisi. Pellentesque lacus justo, laoreet sit amet lacus ut, molestie congue velit. Maecenas quis lacinia quam, a elementum tortor. Quisque vulputate consectetur laoreet. Phasellus magna est, faucibus eu congue ac, euismod vitae mi.
-        </p>
+          <p className="a-1-subtext font-instrument-sans font-size-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+          </p>
+          
+
+          <p className="a-1-subtitle font-instrument-sans font-size-20">So what did we do? <br></br>
+We started by.</p>
+
+        </div>
+
+        <div className='a-image'>
+          <img src="your-image.jpg" alt="Descriptive text" />
+        </div>
+
+        <div className='a-2'>
+                    <p className="a-2-title font-inria-serif-bold font-size-48">Breaking it Down.</p>
+          <p className="a-2-subtext font-instrument-sans font-size-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          </p>
+        </div>
+
+        <div className='a-3'></div>
+
       </div>
 
     </main>
