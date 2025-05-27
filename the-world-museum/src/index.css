@@ -41,10 +41,6 @@ body {
   margin-bottom: 1rem;
 }
 
-button {
-  position: relative;
-}
-
 .box {
   position: absolute;
   left: 50%;

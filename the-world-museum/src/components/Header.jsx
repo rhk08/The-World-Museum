@@ -21,10 +21,10 @@ export default function Header() {
           <Link to="/"><p className='hover-underline-animation left'>PROBLEM.</p></Link>
         </li>
         <li>
-          <Link to="/custom" style={{ paddingRight: '0.5rem' }}><p  className='hover-underline-animation'>SOLUTION.</p></Link>
+          <Link to="/solutionpage" style={{ paddingRight: '0.5rem' }}><p  className='hover-underline-animation left'>SOLUTION.</p></Link>
         </li>
         <li>
-          <Link to="/images"><p className='hover-underline-animation right'>TIMELINE.</p></Link>
+          <Link to="/timelinepage"><p className='hover-underline-animation left'>TIMELINE.</p></Link>
         </li>
       </ul>
     </header>

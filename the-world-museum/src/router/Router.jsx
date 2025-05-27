@@ -7,9 +7,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
-import Boxes from '../views/Boxes';
-import Custom from '../views/Custom';
-import Images from '../views/Images';
+import ProblemPage from '../views/ProblemPage';
+import SolutionPage from '../views/SolutionPage';
+import TimelinePage from '../views/TimelinePage';
 import PageTransition from '../components/PageTransition'; // <- import
 
 export default function Router() {
@@ -31,9 +31,9 @@ export default function Router() {
       <div id="smooth-content">
         <PageTransition key={location.pathname}>
           <Routes location={location} key={location.pathname}>
-            <Route index element={<Boxes />} />
-            <Route path="custom" element={<Custom />} />
-            <Route path="images" element={<Images />} />
+            <Route index element={<ProblemPage />} />
+            <Route path="SolutionPage" element={<SolutionPage />} />
+            <Route path="TimelinePage" element={<TimelinePage />} />
           </Routes>
         </PageTransition>
       </div>

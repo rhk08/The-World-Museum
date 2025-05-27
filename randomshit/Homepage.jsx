@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SplitText } from 'gsap/SplitText';
 
 import { useGSAP } from '@gsap/react';
 import './Homepage.css';
+import '../styles/problem-page.css';
 
 const HomePage = () => {
   const container = useRef();
@@ -12,8 +14,23 @@ const HomePage = () => {
   const splitRef = useRef(null);
   const triggerRef = useRef(null);
 
+
+  const scrollTo = () => {
+    const smoother = ScrollSmoother.get();
+    if (smoother) {
+      smoother.scrollTo('.box-d', true, 'center center');
+    }
+  };
+
   useGSAP(
     () => {
+
+      ScrollTrigger.create({
+        trigger: '.permanent-pin',
+        start: 'center center',
+        pin: true,              // pin it
+        end: "+=99999"          // make it stay pinned "forever"
+      });
 
       const splitEl = container.current?.querySelector(".split");
       if (!splitEl) return;
@@ -163,15 +180,33 @@ const HomePage = () => {
 
   return (
     <main className="home" ref={container}>
-      <div className="header">
-        <h1 className="title">ScrollSmoother &amp; React Router</h1>
-        <p>
-          Simple example for setting up GSAP ScrollSmoother in a React App using{' '}
-          <strong>
-            <i>React</i> <i>Router</i>
-          </strong>
+
+      <button className="a permanent-pin" onClick={scrollTo}>
+              1. PROBLEM
+      </button>
+
+      <div className="info-element a">
+        <h1 className="title font-inria-serif-bold font-size-64">1. The Problem</h1>
+        <p className='font-instrument-sans font-size-20'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu eros erat. Vestibulum vitae aliquet nunc. Donec gravida nulla vitae enim laoreet placerat vel ac ex. Nulla facilisi. Pellentesque lacus justo, laoreet sit amet lacus ut, molestie congue velit. Maecenas quis lacinia quam, a elementum tortor. Quisque vulputate consectetur laoreet. Phasellus magna est, faucibus eu congue ac, euismod vitae mi.
         </p>
       </div>
+
+      <div className='image-element c'>
+        <img
+          src="../images/antiquities.jpg"
+          alt="Kitten"
+        />
+      </div>
+
+
+      <div className="info-element b">
+        <h1 className="title font-inria-serif-bold font-size-64">1. The Problem</h1>
+        <p className='font-instrument-sans font-size-20'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu eros erat. Vestibulum vitae aliquet nunc. Donec gravida nulla vitae enim laoreet placerat vel ac ex. Nulla facilisi. Pellentesque lacus justo, laoreet sit amet lacus ut, molestie congue velit. Maecenas quis lacinia quam, a elementum tortor. Quisque vulputate consectetur laoreet. Phasellus magna est, faucibus eu congue ac, euismod vitae mi.
+        </p>
+      </div>
+
 
 
       <div className="box box-a gradient-blue" data-speed="0.5">
