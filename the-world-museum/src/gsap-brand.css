@@ -485,23 +485,6 @@ a:hover {
   color: var(--green-dark);
 }
 
-/* button:not('.box') { breaking for some reason in codepen? */
-button {
-  display: inline-block;
-  outline: none;
-  padding: 8px 14px;
-  background: var(--dark);
-  border: solid 2px var(--light);
-  color: var(--light);
-  text-decoration: none;
-  border-radius: 99px;
-  padding: 12px 25px;
-  text-transform: uppercase;
-  font-weight: 600;
-  cursor: pointer;
-  line-height: 18px;
-}
-
 .gsap-logo {
   width: 20vw;
   max-width: 150px;

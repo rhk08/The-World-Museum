@@ -68,8 +68,29 @@
 
 
 button {
-  position: absolute;
-  top: 100px;
+    display: inline-block;
+    outline: none;
+    padding: 8px 14px;
+    background: var(--beige);
+
+
+    color: var(--black);
+    text-decoration: none;
+    
+
+    width: 100px;
+    height: 40px;
+
+    cursor: pointer;
+    line-height: 18px;
+
+
+        border-style: solid;
+    border-color: var(--tinted-beige);
+    border-width: 2px;
+    border-radius: 15px;
+        text-align: center;
+    
 }
 
 .button {
@@ -77,10 +98,10 @@ button {
 }
 
 .permanent-pin {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  z-index: 9999;
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    z-index: 9999;
 }
 
 
