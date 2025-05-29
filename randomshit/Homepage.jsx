@@ -14,6 +14,10 @@ const HomePage = () => {
   const splitRef = useRef(null);
   const triggerRef = useRef(null);
 
+  const a1TextRef = useRef();
+  const a2LeftTextRef = useRef();
+  const a2RightTextRef = useRef();
+
 
   const scrollTo = () => {
     const smoother = ScrollSmoother.get();
@@ -182,7 +186,7 @@ const HomePage = () => {
     <main className="home" ref={container}>
 
       <button className="a permanent-pin" onClick={scrollTo}>
-              1. PROBLEM
+        1. PROBLEM
       </button>
 
       <div className="info-element a">

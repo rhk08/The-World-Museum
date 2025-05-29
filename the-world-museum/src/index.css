@@ -23,7 +23,6 @@ body {
   width: 100%;
   /* set a height because the contents are position: absolute, thus natively there's no height */
   height: 10000px;
-
   background-image: linear-gradient(rgba(var(--tinted-beige-rgb), 0.2) 2px,
       transparent 4px),
     linear-gradient(90deg, rgba(var(--tinted-beige-rgb), 0.2) 2px, transparent 2px),

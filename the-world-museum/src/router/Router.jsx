@@ -12,6 +12,8 @@ import SolutionPage from '../views/SolutionPage';
 import TimelinePage from '../views/TimelinePage';
 import PageTransition from '../components/PageTransition'; // <- import
 
+import Header from '../components/Header';
+
 export default function Router() {
   const location = useLocation();
 
@@ -28,9 +30,12 @@ export default function Router() {
 
   return (
     <div id="smooth-wrapper">
+
       <div id="smooth-content">
+              
         <PageTransition key={location.pathname}>
           <Routes location={location} key={location.pathname}>
+            
             <Route index element={<ProblemPage />} />
             <Route path="SolutionPage" element={<SolutionPage />} />
             <Route path="TimelinePage" element={<TimelinePage />} />

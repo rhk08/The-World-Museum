@@ -4,7 +4,7 @@ import '../styles/footer.css';
 export default function footer() {
     return (
         <footer>
-            <a
+            {/* <a
                 href="https://www.pwc.com.au/"
                 className="icon"
                 target="_blank"
@@ -16,7 +16,8 @@ export default function footer() {
                     width="65"
                     alt=""
                 />
-            </a>
+            </a> */}
+            <a href="linkedin/ryanzwkhor">RYAN KHOR MADE THIS</a>
 
         </footer>
     );
