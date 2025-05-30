@@ -10,7 +10,7 @@ export default function Header() {
         target="_blank"
         rel="noreferrer"
       >
-        UofA.  
+        DI. 
       </a><a href="https://www.adelaide.edu.au/learning/ua/media/2923/pwc-australia-client-briefing-pack-the-world-museum-002.pdf" className='subtext font-size-12 font-instrument-sans black invert'>Student proprosal</a></div>
 
      

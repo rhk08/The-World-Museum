@@ -120,8 +120,12 @@
     left: 50%;
     transform: translateX(-50%);
 
-    z-index: 102;
+    z-index: 104;
     position: absolute;
+
+    color: var(--beige);
+    background-color: var(--black);
+    border-color:  var(--black);
 
     will-change: transform;
     top: 640px;
@@ -140,7 +144,7 @@
     transform: translate(-50%, -50%);
 
     top: 670px;
-    z-index: 102;
+    z-index: 103;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -151,7 +155,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    z-index: 103;
+    z-index: 105;
     position: absolute;
 
     width: 700px;
@@ -185,7 +189,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    z-index: 105;
+    z-index: 102;
     position: absolute;
 
     top: 500px;
