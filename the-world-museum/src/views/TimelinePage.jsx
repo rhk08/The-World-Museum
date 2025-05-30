@@ -89,7 +89,7 @@ const TimelinePage = () => {
       //extend timeline
       .to(container.current, {
         duration: 0.5,
-        height: 10000,
+        height: 7000,
       }, "0")
       .to(timeLine.current, {
         duration: 2.5,

@@ -17,7 +17,7 @@ export default function footer() {
                     alt=""
                 />
             </a> */}
-            <a href="linkedin/ryanzwkhor">RYAN KHOR MADE THIS</a>
+            <a href="https://www.linkedin.com/in/ryanzwkhor/">RYAN KHOR MADE THIS</a>
 
         </footer>
     );
