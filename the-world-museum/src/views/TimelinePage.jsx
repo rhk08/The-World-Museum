@@ -27,6 +27,9 @@ const TimelinePage = () => {
   const playAnimationButtonLowerHalf = useRef();
 
 
+  const skipAnimationButtonLowerHalf = useRef();
+  const skipAnimationButton = useRef();
+
   const scrollToStart = () => {
     const smoother = ScrollSmoother.get();
     if (smoother) {
@@ -69,7 +72,7 @@ const TimelinePage = () => {
           opacity: 1,
           pointerEvents: 'auto',
           duration: 0.6,
-          delay: index * 0.13,
+          delay: index * 0.12,
           ease: 'power3.out',
           // Only trigger scroll for the first element
           onStart: () => {
@@ -87,7 +90,7 @@ const TimelinePage = () => {
               gsap.to(smoother, {
                 scrollTop: targetY,
                 duration: 3.5,
-                ease: "power4.inOut",
+                ease: "power3.inOut",
               });
             }
           },
@@ -120,6 +123,7 @@ const TimelinePage = () => {
         y: 10,
         ease: "power1.inOut",
       }, "0")
+
       .to(playAnimationButton.current, {
         duration: 0.3,
         y: 0,
@@ -141,6 +145,14 @@ const TimelinePage = () => {
         opacity: 0,
         filter: 'blur(1px)',
       }, "0.3")
+
+      //
+      .to([skipAnimationButton.current, skipAnimationButtonLowerHalf.current], {
+        duration: 0.1,
+        opacity: 0,
+        pointerEvents: "none",
+        ease: "power3.out"
+      }, "0")
 
       //extend timeline
       .to(container.current, {
@@ -203,8 +215,8 @@ const TimelinePage = () => {
         duration: 0.05,
       }, ">")
       .add(() => {
-        animateAndScrollDivs(); // 👈 your custom function here
-      });
+        animateAndScrollDivs();
+      }, ">-=0.1");
 
 
     //gsap nonsense scroll back to the top
@@ -213,6 +225,65 @@ const TimelinePage = () => {
   };
 
 
+
+
+  const skipAnimation = () => {
+    if (inProgress) {
+      return;
+    }
+    setInProgress(true);
+
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        gsap.set(timelineStartText1.current, { pointerEvents: "auto" });
+        gsap.set(timelineEndText1.current, { pointerEvents: "auto" });
+        setInProgress(false);
+      },
+    });
+
+
+    const divs = Array.from(container.current.querySelectorAll('.timeline-animated-element'));
+
+    tl
+      .to([skipAnimationButton.current, skipAnimationButtonLowerHalf.current], {
+        duration: 0.1,
+        opacity: 0,
+        pointerEvents: "none",
+        ease: "power3.in",
+      }, "0")
+      .to([playAnimationButton.current, rippleEffect1.current, rippleEffect2.current, playAnimationButtonLowerHalf.current], {
+        duration: 0.2,
+        opacity: 0,
+        pointerEvents: "none",
+        ease: "power3.in",
+      }, "0.3")
+      .to([timelineStart.current, timelineStartLowerHalf.current, timelineEnd.current, timelineEndLowerHalf.current, timeLine.current], {
+        duration: 0.3,
+        opacity: 1,
+        scaleY: 1,
+        pointerEvents: "auto",
+        ease: "power3.in",
+        filter: 'blur(0px)',
+      }, "1")
+      .fromTo(divs, {
+        opacity: 0,
+        pointerEvents: "none",
+      }, {
+        opacity: 1,
+        y: 0,
+        pointerEvents: "auto",
+        duration: 0.3,
+        ease: "power3.in"
+      }, "1")
+      .to(container.current, {
+        duration: 0.3,
+        height: 6500,
+      }, "0")
+
+
+
+  };
 
 
   const timelineEndText1 = useRef();
@@ -365,7 +436,8 @@ const TimelinePage = () => {
       <div ref={timelineEndLowerHalf} className='tp-timeline-end-lower-half'></div>
 
 
-
+      <button ref={skipAnimationButton} className='tp-skip-animation-button font-instrument-sans font-size-16' onClick={skipAnimation}> SKIP ANIMATION? </button>
+      <div ref={skipAnimationButtonLowerHalf} className='tp-skip-animation-button-lower-half'></div>
 
       <div className='tp-a'>
         <div className='tp-a-l'>
