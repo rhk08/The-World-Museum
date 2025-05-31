@@ -178,7 +178,7 @@ const Problempage = () => {
       }
     });
 
-    const verticalDistance = 260;
+    const verticalDistance = 300;
     const blackoutTime = "3";
 
 
@@ -205,7 +205,7 @@ const Problempage = () => {
         //grow container
         .to(container.current, {
           duration: 0.6,
-          height: 6000,
+          height: 4200,
           ease: "power2.inOut",
         }, "0")
 
@@ -430,19 +430,21 @@ const Problempage = () => {
 
       <div ref={breakdownDiv} className='breakdown-div'>
         <p ref={breakdownDivText1} className='breakdown-div-title font-inria-serif-bold font-size-64'>We Broke it Down .</p>
-        <p ref={breakdownDivText2} className='breakdown-div-text font-instrument-sans font-size-20'>To focus our efforts, we've grouped these into four core objectives that should drive the next phase of the museum's digital transformation.</p>
-
+        <p ref={breakdownDivText2} className='breakdown-div-text font-instrument-sans font-size-20'>From initial briefing, we carefully broke the provided infomation down to fully understand the project's scope and requirements, creating four objectives that the solutions too will fufil the requirements under the proposed challenges and special considerations .</p>
         <div ref={orangeTag} className='orange-tag'></div>
       </div>
 
 
-      <button ref={showProblemButton} className='showProblem-button font-inria-serif-bold font-size-20' onClick={ShowBreakDown}>SHOW PROBLEM?</button>
+      <button ref={showProblemButton} className='showProblem-button font-inria-serif-bold font-size-20' onClick={ShowBreakDown}>GO BACK?</button>
 
       <div ref={objectivesWrapper} className='objectives-wrapper'>
         <div className='b'>
           <div className='b-1'>
             <p className='b-1-title font-inria-serif-bold font-size-64'>Objective 1.</p>
-            <p className='b-1-subtitle font-instrument-sans font-size-20'>INCREASE HANDLING EFFICIENCY</p>
+            <p className='b-1-subtitle font-instrument-sans font-size-20'>EFFECTIVE DIGITISATION OF COMPLEX AND SENSITIVE ARTIFACTS
+
+
+            </p>
           </div>
 
           <div className='b-image'><img src="images\white-gloves.png" alt="white gloves" /></div>
@@ -450,7 +452,7 @@ const Problempage = () => {
           <div className='b-2'>
             <p className='b-2-title font-inria-serif-bold font-size-32'>What does this mean?</p>
             <div className='b-2-line'></div>
-            <p className='b-2-text font-instrument-sans font-size-16'>This means the goal is to minimise the time spent handling objects, as increased handling time raises the risk of damage or loss. To achieve this, it's important to capture all necessary information in one efficient process. This includes location data, images, metadata, and details about the staff involved in handling the items.</p>
+            <p className='b-2-text font-instrument-sans font-size-16'>The current process for digitisation, is either non-existant or time-consuming, labour-intensive and has many issues regarding certain categories of artifacts - some items having unique handling needs and others are preserved in special liquids or a difficult to discern, all of which need to be considered, either with regulated/automated workflows (Topic 4) or new technologies (Topics 1, 2). By addressing this objective we will also fulfil the proposed business requirements, which will be elaborated further on during our solutions.</p>
           </div>
 
           <div className='b-3'></div>
@@ -461,7 +463,7 @@ const Problempage = () => {
           <div className='c-1'>
             <p className='c-1-title font-inria-serif-bold font-size-64'>Objective 2.</p>
             <p className='c-1-subtitle font-instrument-sans font-size-20'>
-              ACCURATE TRACKING OF ALL ITEMS TO PREVENT THEFT, LOSS, AND DAMAGE</p>
+              ENABLING ACCURATE AND EFFICIENT TRACKING OF ALL ITEMS</p>
           </div>
 
           <div className='c-image'><img src="images\paintings.png" alt="white gloves" /></div>
@@ -469,7 +471,7 @@ const Problempage = () => {
           <div className='c-2'>
             <p className='c-2-title font-inria-serif-bold font-size-32'>What does this mean?</p>
             <div className='c-2-line'></div>
-            <p className='c-2-text font-instrument-sans font-size-16'>Enabling accurate tracking of all items means implementing a digital system that records each object's current location, its location history, and details of who has handled it. This level of traceability helps prevent theft, loss, damage, and unnecessary replacement by ensuring full accountability and visibility at every stage of an item's movement.</p>
+            <p className='c-2-text font-instrument-sans font-size-16'>The World Museum has long struggled to manage and track its 25 million objects due to an incomplete barcoding system and heavy reliance on manual processes. Without a consistent method to monitor item location, handling, or loan status, the risks of loss, damage, or misplacement increase significantly. Alongside digitisation, this issue cannot be overlooked and may need to be addressed through a robust tracking system and workflow (Topic 3). Addressing this objective is essential to meeting the briefing requirements and ensuring the success of the digitisation initiative. More details can be found in the solutions section.</p>
           </div>
 
           <div className='c-3'></div>
@@ -480,7 +482,7 @@ const Problempage = () => {
         <div className='d'>
           <div className='d-1'>
             <p className='d-1-title font-inria-serif-bold font-size-64'>Objective 3.</p>
-            <p className='d-1-subtitle font-instrument-sans font-size-20'>STANDARDISE PROCESS FOR MANAGEMENT</p>
+            <p className='d-1-subtitle font-instrument-sans font-size-20'>STANDARDISED PROCESSES FOR ARTIFACT MANAGEMENT</p>
           </div>
 
           <div className='d-image'><img src="images\museum-stock.jpg" alt="white gloves" /></div>
@@ -488,7 +490,7 @@ const Problempage = () => {
           <div className='d-2'>
             <p className='d-2-title font-inria-serif-bold font-size-32'>What does this mean?</p>
             <div className='d-2-line'></div>
-            <p className='d-2-text font-instrument-sans font-size-16'>Standardising the process for management involves creating a consistent and efficient workflow for key tasks such as imaging, data entry, conservation, and returning objects. By streamlining these processes, we can improve data accuracy, reduce errors, and ensure that all departments follow the same best practices.</p>
+            <p className='d-2-text font-instrument-sans font-size-16'>Currently, the World Museum lacks a clear workflow for digitising and handling artifacts, leading to inefficiencies and inconsistent data. Establishing a standardised process creates a streamlined environment for staff and improves data accuracy. Researchers and scientists will benefit from reliable access to well-managed information, while public users can explore the collection more easily. Addressing this objective may reveal automation opportunities (Topic 4), and the outputs of such a process will further help meet key requirements.</p>
           </div>
 
           <div className='d-3'></div>
@@ -498,7 +500,7 @@ const Problempage = () => {
         <div className='e'>
           <div className='e-1'>
             <p className='e-1-title font-inria-serif-bold font-size-64'>Objective 4.</p>
-            <p className='e-1-subtitle font-instrument-sans font-size-20'>ENABLING AND PROMOTION OF PUBLIC ACCESS AND ENGAGEMENT</p>
+            <p className='e-1-subtitle font-instrument-sans font-size-20'>CREATING VALUE THROUGH DIGITISATION AND THE FINAL DIGITAL COLLECTION</p>
           </div>
 
           <div className='e-image'><img src="images\clore-natural-history-centre.jpg" alt="white gloves" /></div>
@@ -506,17 +508,67 @@ const Problempage = () => {
           <div className='e-2'>
             <p className='e-2-title font-inria-serif-bold font-size-32'>What does this mean?</p>
             <div className='e-2-line'></div>
-            <p className='e-2-text font-instrument-sans font-size-16'>By enabling public access and engagement digitization will allow digital platforms to share the museum's collection with wider audiences through online catalogues, virtual exhibits, and interactive content, thereby meaeting the request to provide broader access of digital repatriation and knowledge. By meeting this requirement it also allows us to discuss values to provide value mentione in topic 6.  increases public interest, supports academic research, and opens up opportunities for funding, partnerships, and revenue through greater visibility and community involvement.</p>
+            <p className='e-2-text font-instrument-sans font-size-16'>Digitisation offers numerous far-reaching benefits. By digitising the collection, the museum transforms it into a valuable asset in its own right, opening up multiple opportunities for value generation. These include avenues such as research, education, and community engagement. By achieving this objective, multiple avenues for value creation will be explored (Topic 6) a longside the fufilment of the given business requirements.</p>
           </div>
 
           <div className='e-3'></div>
         </div>
+      </div>
 
+      <div className='f'>
+        <div className='f-1'>
 
-        <div className='f'>
+          <div className='f-1-container'>
+            <p className='f-1-text1 font-inria-serif-bold font-size-96'>DI.</p>
+            <p className='f-1-text2 font-instrument-sans font-size-16'>The Museum Digitisation Initative.</p>
+
+            <div className='f-1-line'></div>
+            <p className='f-1-text3 font-inria-serif-bold font-size-48'>2025</p>
+          </div>
 
         </div>
+
+        
+        <div className='f-credits-wrapper'>
+          <div className='f-2'>
+
+            <p className='font-instrument-sans font-size-12'>INFORMATION:</p>
+            <div className='seperator'></div>
+            <p className='font-instrument-sans font-size-12'>JUSTIN WU</p>
+            <p className='font-instrument-sans font-size-12'>BROOKE WANG</p>
+            <p className='font-instrument-sans font-size-12'>JENNIFER BRENNAN</p>
+            <p className='font-instrument-sans font-size-12'>SI QI</p>
+          </div>
+
+
+          <div className='f-3'>
+            <p className='font-instrument-sans font-size-12'>WEBSITE:</p>
+            <div className='seperator'></div>
+            <a href="https://www.linkedin.com/in/ryanzwkhor/" target="_blank" rel="noopener noreferrer" className="font-instrument-sans font-size-12 f-link hover-underline-animation-f left">
+              RYAN KHOR
+            </a>
+          </div>
+        </div>
+
+
+        <div className="shadow-overlay"></div>
+
+        <div data-speed="0.5" className='video-wrapper'>
+          <video
+            src="../videos/world_museum_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+
+          />
+          <div className="inset-shadow-bottom">
+
+          </div>
+        </div>
+
       </div>
+
 
     </main>
   );

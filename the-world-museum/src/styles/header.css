@@ -1,15 +1,19 @@
 header .text-logo {
-    flex-direction: column;
+    flex-direction: row;
     display: flex;
     line-height: 1;
-    padding-top: 0.5rem;
     user-select: none;
     mix-blend-mode: difference;
 }
 
 header .text-logo .subtext {
-    padding-left: 1.5rem;
+    flex-direction: column;
+    display: flex;
+    padding-left: 1rem;
     text-decoration: none;
+    text-align: left;
+    width: 200px;
+    transform: translate(-20px, 10px);
 }
 
 .hover-underline-animation {
