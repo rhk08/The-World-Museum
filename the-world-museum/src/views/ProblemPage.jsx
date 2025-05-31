@@ -202,12 +202,7 @@ const Problempage = () => {
         ease: "power3.out",
       }, "0")
 
-        //grow container
-        .to(container.current, {
-          duration: 0.6,
-          height: 4200,
-          ease: "power2.inOut",
-        }, "0")
+
 
         .to(blackoutButton.current, {
           duration: 0.2,
@@ -253,6 +248,11 @@ const Problempage = () => {
 
 
         //end logic
+        .to(container.current, {
+          duration: 0.6,
+          height: 4200,
+          ease: "power2.inOut",
+        }, ">")
         .to(blackoutBox.current, {
           duration: 0.6,
           scale: 1,
@@ -261,6 +261,8 @@ const Problempage = () => {
           borderRadius: "100%",
           ease: "power2.out",
         }, blackoutTime)
+        //grow container
+
         //display the other button 
         .to(showProblemButton.current, {
           duration: 0.3,
