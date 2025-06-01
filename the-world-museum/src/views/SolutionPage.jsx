@@ -16,6 +16,32 @@ const SolutionPage = () => {
 
   return (
     <main className="home" style={{ height: "7500px" }} ref={container}>
+      <div className='sp-obj1-wrapper'>
+        <p className='sp-obj1-title font-inria-serif-bold font-size-40'>Addressing Objective 1.</p>
+        <div className='sp-obj1-subtitle1-wrapper'>
+          <p className='sp-obj1-subtitle1-title font-instrument-sans font-size-20'>FOREWORD</p>
+          <p className='sp-obj1-subtitle1-section font-instrument-sans font-size-20'>( 01 )</p>
+          <div className='sp-obj1-subtitle1-line'></div>
+        </div>
+        <p className='sp-obj1-text1 font-instrument-sans font-size-20'>
+          Digitising museum objects is often slow, inconsistent, and risky — especially with collections as large as the World Museum’s 25 million artefacts. To reduce handling and improve efficiency, our solution will aim to capture all necessary information in a single, streamlined session, ideally in batches.
+        </p>
+
+        <div className='sp-spacer1'></div>
+
+        <div className='sp-obj1-subtitle1-wrapper'>
+          <p className='sp-obj1-subtitle1-title font-instrument-sans font-size-20'>PROPOSED SOLUTION</p>
+          <p className='sp-obj1-subtitle1-section font-instrument-sans font-size-20'>( 02 )</p>
+          <div className='sp-obj1-subtitle1-line'></div>
+        </div>
+        <p className='sp-obj1-text1 font-instrument-sans font-size-20'>
+          Our solution involves using a series of multiple technologies. Where each component of the proposed system directly contributes to improving the efficiency of object handling during digitization by reducing manual labor, minimizing repositioning, accelerating data capture, and improving automation.
+        </p>
+
+        <div className=''></div>
+
+      </div>
+
 
       <div className='f' style={{ top: 7000 }}>
         <div className='f-1'>
