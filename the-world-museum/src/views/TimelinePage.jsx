@@ -47,58 +47,130 @@ const TimelinePage = () => {
   const animateAndScrollDivs = () => {
     const divs = Array.from(container.current.querySelectorAll('.timeline-animated-element'));
     const smoother = ScrollSmoother.get();
+    const containerRect = container.current.getBoundingClientRect();
+    const containerCenterX = containerRect.left + containerRect.width / 2;
+
+
 
     const sortedDivs = divs
       .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
       .reverse();
 
-    const directions = ['top', 'right', 'bottom', 'left'];
-
     sortedDivs.forEach((div, index) => {
-      const direction = directions[Math.floor(Math.random() * directions.length)];
+      const divRect = div.getBoundingClientRect();
+      const divCenterX = divRect.left + divRect.width / 2;
+      const fromLeft = divCenterX < containerCenterX;
+      const xStart = fromLeft ? 50 : -50;
+      const yStart = 10; //comes from below
 
-      let x = 0, y = 0;
-      if (direction === 'top') y = -100;
-      else if (direction === 'bottom') y = 100;
-      else if (direction === 'left') x = -100;
-      else if (direction === 'right') x = 100;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
 
-      gsap.fromTo(
-        div,
-        { x, y, opacity: 0, pointerEvents: 'none' },
-        {
-          x: 0,
+      // Add small random offset (±10px)
+      const offsetX = (Math.random() - 0.5) * 20; // range: -10 to +10
+      const offsetY = (Math.random() - 0.5) * 20;
+
+      const centerX = divRect.left + divRect.width / 2 + scrollLeft + offsetX;
+      const centerY = divRect.top + divRect.height / 2 + scrollTop + offsetY;
+
+      // Calculate distance from center of container (closer → bigger scale)
+      const distanceFromCenter = Math.abs(containerCenterX - divCenterX);
+      const maxDistance = containerRect.width / 2;
+
+      // Invert and normalize: (1 - distance ratio) gives 1 near center, 0 near edge
+      const closeness = 1 - Math.min(distanceFromCenter / maxDistance, 1);
+
+      // Use closeness to bias scale toward a higher value near center
+      const baseScale = 10;
+      const maxExtraScale = 40; // Scale up to 80 total
+      const randomScale = baseScale + closeness * maxExtraScale + Math.random() * 10; // Add slight randomness
+
+      // Create and style the circle
+      const makeCircle = (extraStyles = {}) => {
+        const c = document.createElement('div');
+        c.classList.add('timeline-center-circle');
+        Object.assign(c.style, {
+          position: 'absolute',
+          left: `${centerX}px`,
+          top: `${centerY}px`,
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          backgroundColor: '#E0D8CC',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
+          zIndex: '98',
+          opacity: 0,
+          scale: 0,
+          mixBlendMode: 'darken',
+          ...extraStyles
+        });
+        container.current.appendChild(c);
+        return c;
+      };
+
+      const circle1 = makeCircle(); // default
+      const circle2 = makeCircle();
+
+
+      gsap.set(div, { x: xStart, y: yStart, opacity: 0, pointerEvents: 'none', scale: 0.99 });
+
+      const tl = gsap.timeline({
+        delay: index * 0.1,
+        onStart: index === 0 && smoother ? () => {
+          const targetCenter = smoother.offset(timelineStart.current, "center center");
+          const offsetBelowCenter = 100;
+          const targetY = Math.min(ScrollTrigger.maxScroll(window), targetCenter + offsetBelowCenter);
+
+          gsap.to(smoother, {
+            scrollTop: targetY,
+            duration: 3.5,
+            ease: "power3.inOut",
+          });
+        } : undefined,
+      });
+      // range: 20 to 50
+      // Animate main div
+      tl.to(div, {
+        x: 0,
+        opacity: 0.3,
+        duration: 1,
+        ease: 'power3.inOut',
+      })
+        .to(div, {
           y: 0,
+          duration: 0.3,
+          ease: 'power2.in',
           opacity: 1,
           pointerEvents: 'auto',
-          duration: 0.6,
-          delay: index * 0.12,
-          ease: 'power3.out',
-          // Only trigger scroll for the first element
-          onStart: () => {
-            if (index === 0 && smoother) {
-              const targetCenter = smoother.offset(timelineStart.current, "center center");
+          filter: 'blur(0px) brightness(1) saturate(1) sepia(0)',
+          scale: 1,
+        }, ">-=0.3")
+        .fromTo(circle1, {
+          scale: 0,
+          opacity: 0.7,
+        }, {
+          scale: randomScale,
+          opacity: 0,
+          duration: 1.3,
+          ease: 'power1.out',
+          filter: 'blur(0.2px)',
+        }, "0.5")
+        .fromTo(circle2, {
+          scale: 0,
+          opacity: 0.7,
+        }, {
+          scale: randomScale,
+          opacity: 0,
+          duration: 1.5,
+          ease: 'power1.out',
+          filter: 'blur(0.2px)',
+        }, "<+=0.2");
 
-              // Add some extra pixels to move just below center
-              const offsetBelowCenter = 100; // change as needed (pixels)
-
-              const targetY = Math.min(
-                ScrollTrigger.maxScroll(window),
-                targetCenter + offsetBelowCenter
-              );
-
-              gsap.to(smoother, {
-                scrollTop: targetY,
-                duration: 3.5,
-                ease: "power3.inOut",
-              });
-            }
-          },
-        }
-      );
     });
   };
 
+  const maxPageHeight = 7500;
 
   const playAnimation = () => {
     if (inProgress) {
@@ -115,6 +187,8 @@ const TimelinePage = () => {
         setInProgress(false);
       },
     });
+
+    const maxHeight = Math.max(window.innerHeight * 1.1, maxPageHeight);
 
     tl
       //button ripple effect
@@ -157,7 +231,7 @@ const TimelinePage = () => {
       //extend timeline
       .to(container.current, {
         duration: 0.5,
-        height: 6500,
+        height: maxHeight,
       }, "0")
       .to(timeLine.current, {
         duration: 2.5,
@@ -224,9 +298,6 @@ const TimelinePage = () => {
 
   };
 
-
-
-
   const skipAnimation = () => {
     if (inProgress) {
       return;
@@ -242,7 +313,7 @@ const TimelinePage = () => {
       },
     });
 
-
+    const maxHeight = Math.max(window.innerHeight * 1.1, maxPageHeight);
     const divs = Array.from(container.current.querySelectorAll('.timeline-animated-element'));
 
     tl
@@ -266,9 +337,17 @@ const TimelinePage = () => {
         ease: "power3.in",
         filter: 'blur(0px)',
       }, "1")
+      .to(timelineEndLowerHalf.current, {
+        transformOrigin: "bottom center",
+        duration: 0.3,
+        scaleY: 0.75,
+        y: -10,
+        ease: "power3.in",
+      }, "1")
       .fromTo(divs, {
         opacity: 0,
         pointerEvents: "none",
+        filter: 'blur(0px) brightness(1) saturate(1) sepia(0)',
       }, {
         opacity: 1,
         y: 0,
@@ -278,7 +357,7 @@ const TimelinePage = () => {
       }, "1")
       .to(container.current, {
         duration: 0.3,
-        height: 6500,
+        height: maxHeight,
       }, "0")
 
 
@@ -303,10 +382,14 @@ const TimelinePage = () => {
 
       //hide elements
       const divs = container.current.querySelectorAll('.timeline-animated-element');
-      gsap.set(divs, {
+      const shadowDivs = Array.from(container.current.querySelectorAll('.timeline-animated-element-shadow'));
+      gsap.set([divs, shadowDivs], {
         opacity: 0,
         pointerEvents: 'none',
       });
+
+
+
 
       // Initially show text1, hide text2 for start and end
       gsap.set(timelineStartText1.current, { opacity: 1, pointerEvents: "none", filter: "blur(0px)" });
@@ -398,7 +481,7 @@ const TimelinePage = () => {
   );
 
   return (
-    <main className="home" style={{ height: 1000 }} ref={container}>
+    <main className="home" style={{ height: "110vh" }} ref={container}>
 
 
 
@@ -441,6 +524,7 @@ const TimelinePage = () => {
 
       <div className='tp-a'>
         <div className='tp-a-l'>
+
           <div className='tp-a-l-1 timeline-animated-element'>
             <p className='tp-a-l-1-title font-inria-serif-bold font-size-64'>Phase 1</p>
             <p className='tp-a-l-1-text font-instrument-sans font-size-16'>In the first phase, months 1 - 2, staff will be informed about the upcoming digitisation to ensure a smooth transition. Early communication reduces confusion, builds support among staff, and allows time to plan necessary training, improving overall efficiency and minimizing disruptions during implementation.</p>
@@ -461,6 +545,29 @@ const TimelinePage = () => {
 
 
           <div className="tp-a-r-image timeline-animated-element">
+            <img src="images\stock-informing.png" alt="cheeta" />
+          </div>
+        </div>
+      </div>
+      <div className='tp-a-shadow'>
+        <div className='tp-a-l'>
+
+          <div className='tp-a-l-1 timeline-animated-element-shadow'>
+          </div>
+
+          <div className='tp-a-l-2 timeline-animated-element-shadow'>
+          </div>
+
+        </div>
+        <div className='tp-a-r'>
+
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-a-r-title font-inria-serif-bold font-size-48'>Months 1 - 2</p>
+            <p className='tp-a-r-text font-instrument-sans font-size-16'>Ensuring Employee Prepardness</p>
+          </div>
+
+
+          <div className="tp-a-r-image timeline-animated-element-shadow">
             <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
           </div>
         </div>
@@ -476,7 +583,7 @@ const TimelinePage = () => {
           </div>
 
           <div className="tp-b-l-image timeline-animated-element">
-            <img src="" alt="" />
+            <img src="images\screens_nophone-e1515080866673.jpg" alt="" />
           </div>
 
         </div>
@@ -493,6 +600,28 @@ const TimelinePage = () => {
 
         </div>
       </div>
+      <div className='tp-b-shadow'>
+        <div className='tp-b-l'>
+
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-b-l-title font-inria-serif-bold font-size-48'>Months 3 - 4</p>
+            <p className='tp-b-l-text font-instrument-sans font-size-16'>Installment of New Systems & Employee Training</p>
+          </div>
+
+          <div className="tp-b-l-image timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+        </div>
+        <div className='tp-b-r'>
+          <div className='tp-b-r-1 timeline-animated-element-shadow'>
+          </div>
+
+          <div className='tp-b-r-2 timeline-animated-element-shadow'>
+          </div>
+
+        </div>
+      </div>
 
 
       <div className='tp-c'>
@@ -503,11 +632,18 @@ const TimelinePage = () => {
           </div>
 
           <div className="tp-c-l-image-1 timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+            <img src="images\image-full-size-gaussian-splatting-post.png" alt="gaussian splat" />
           </div>
 
           <div className="tp-c-l-image-2 timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+            <video
+              src="../videos/gaussian-splat-video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+
+            />
           </div>
 
           <div className='timeline-animated-element'>
@@ -525,11 +661,22 @@ const TimelinePage = () => {
           </div>
 
           <div className="tp-c-r-image-1 timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+
+            <img src="images\rfid.png" alt="rfid" />
+
           </div>
 
           <div className="tp-c-r-image-2 timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+
+            <video
+              src="../videos/vr-gs.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+
+            />
+
           </div>
 
           <div className='tp-c-r-2 timeline-animated-element'>
@@ -541,6 +688,50 @@ const TimelinePage = () => {
           <div className='tp-c-r-3 timeline-animated-element'>
             <p className='tp-c-r-3-subtitle font-instrument-sans font-size-20'>Additional Info:</p>
             <p className='tp-c-r-3-text font-instrument-sans font-size-16'>Although not strictly necessary in this experimental phase, scanning objects from each type would potentially offer visitors more variety and help staff understand the process across categories.</p>
+          </div>
+
+        </div>
+      </div>
+      <div className='tp-c-shadow'>
+        <div className='tp-c-l'>
+          <div className='tp-c-l-1 timeline-animated-element-shadow'>
+          </div>
+
+          <div className="tp-c-l-image-1 timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+          <div className="tp-c-l-image-2 timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-c-l-title font-inria-serif-bold font-size-48'>Months 10 - 11</p>
+            <p className='tp-c-l-text font-instrument-sans font-size-16'>Expanding Public Access</p>
+          </div>
+
+
+        </div>
+        <div className='tp-c-r'>
+
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-c-r-title font-inria-serif-bold font-size-48'>Months 4 - 10</p>
+            <p className='tp-c-r-text font-instrument-sans font-size-16'>Initial Digitisation of Objects Begins</p>
+          </div>
+
+          <div className="tp-c-r-image-1 timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+          <div className="tp-c-r-image-2 timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+          <div className='tp-c-r-2 timeline-animated-element-shadow'>
+          </div>
+
+
+          <div className='tp-c-r-3 timeline-animated-element-shadow'>
           </div>
 
         </div>
@@ -569,7 +760,28 @@ const TimelinePage = () => {
 
 
           <div className="tp-d-r-image timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+            <img src="images\analysis.jpg" alt="cheeta" />
+          </div>
+        </div>
+      </div>
+      <div className='tp-d-shadow'>
+        <div className='tp-d-l'>
+          <div className='tp-d-l-1 timeline-animated-element-shadow'>
+          </div>
+
+          <div className='tp-d-l-2 timeline-animated-element-shadow'>
+          </div>
+
+        </div>
+        <div className='tp-d-r'>
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-d-r-title font-inria-serif-bold font-size-48'>Months 7 - 12</p>
+            <p className='tp-d-r-text font-instrument-sans font-size-16'>Advanced Digitisation & Research Support</p>
+          </div>
+
+
+          <div className="tp-d-r-image timeline-animated-element-shadow">
+            <img src="#" alt="" />
           </div>
         </div>
       </div>
@@ -582,8 +794,8 @@ const TimelinePage = () => {
             <p className='tp-e-l-text font-instrument-sans font-size-16'>Review and Process Improvement</p>
           </div>
 
-          <div className="tp-a-l-image timeline-animated-element">
-            <img src="" alt="" />
+          <div className="tp-e-l-image timeline-animated-element">
+            <img src="images\gathering-feedback.jpg" alt="" />
           </div>
 
 
@@ -593,6 +805,25 @@ const TimelinePage = () => {
             <p className='tp-e-r-1-title font-inria-serif-bold font-size-64'>Phase 6</p>
             <p className='tp-e-r-1-text font-instrument-sans font-size-16'>Conduct a full review and evaluation of the digitisation process so far, gathering feedback from staff and community users. Identify any gaps or challenges in the workflows, data quality, or user experience. Use these insights to refine digitisation methods, update training materials, and improve system integrations to ensure long-term sustainability.
             </p>
+          </div>
+
+        </div>
+      </div>
+      <div className='tp-e-shadow'>
+        <div className='tp-e-l'>
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-e-l-title font-inria-serif-bold font-size-48'>Months 12 - 14</p>
+            <p className='tp-e-l-text font-instrument-sans font-size-16'>Review and Process Improvement</p>
+          </div>
+
+          <div className="tp-e-l-image timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+
+        </div>
+        <div className='tp-e-r'>
+          <div className='tp-e-r-1 timeline-animated-element-shadow'>
           </div>
 
         </div>
@@ -617,11 +848,40 @@ const TimelinePage = () => {
             <p className='tp-f-r-text font-instrument-sans font-size-16'>Full Collection Digitisation & Public Integration</p>
           </div>
           <div className="tp-f-r-image-1 timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+
+                        <video
+              src="../videos/tour-gs.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+
+            />
           </div>
 
           <div className="tp-f-r-image-2 timeline-animated-element">
-            <img src="images/clore-natural-history-centre.jpg" alt="cheeta" />
+            <img src="images\whole-collection.jpg" alt="cheeta" />
+          </div>
+        </div>
+      </div>
+
+      <div className='tp-f-shadow'>
+        <div className='tp-f-l'>
+          <div className='tp-f-l-1 timeline-animated-element-shadow'>
+          </div>
+
+        </div>
+        <div className='tp-f-r'>
+          <div className='timeline-animated-element-shadow'>
+            <p className='tp-f-r-title font-inria-serif-bold font-size-48'>Months 15+</p>
+            <p className='tp-f-r-text font-instrument-sans font-size-16'>Full Collection Digitisation & Public Integration</p>
+          </div>
+          <div className="tp-f-r-image-1 timeline-animated-element-shadow">
+            <img src="#" alt="" />
+          </div>
+
+          <div className="tp-f-r-image-2 timeline-animated-element-shadow">
+            <img src="#" alt="" />
           </div>
         </div>
       </div>
@@ -634,6 +894,62 @@ const TimelinePage = () => {
       </div>
 
       <div className='tp-checklist-div'></div>
+
+
+
+      <div className='f' style={{ top: 7000 }}>
+        <div className='f-1'>
+
+          <div className='f-1-container'>
+            <p className='f-1-text1 font-inria-serif-bold font-size-96'>DI.</p>
+            <p className='f-1-text2 font-instrument-sans font-size-16'>The Museum Digitisation Initative.</p>
+
+            <div className='f-1-line'></div>
+            <p className='f-1-text3 font-inria-serif-bold font-size-48'>2025</p>
+          </div>
+
+        </div>
+
+
+        <div className='f-credits-wrapper'>
+          <div className='f-2'>
+
+            <p className='font-instrument-sans font-size-12'>INFORMATION:</p>
+            <div className='seperator'></div>
+            <p className='font-instrument-sans font-size-12'>JUSTIN WU</p>
+            <p className='font-instrument-sans font-size-12'>BROOKE WANG</p>
+            <p className='font-instrument-sans font-size-12'>JENNIFER BRENNAN</p>
+            <p className='font-instrument-sans font-size-12'>SI QI</p>
+          </div>
+
+
+          <div className='f-3'>
+            <p className='font-instrument-sans font-size-12'>WEBSITE:</p>
+            <div className='seperator'></div>
+            <a href="https://www.linkedin.com/in/ryanzwkhor/" target="_blank" rel="noopener noreferrer" className="font-instrument-sans font-size-12 f-link hover-underline-animation-f left">
+              RYAN KHOR
+            </a>
+          </div>
+        </div>
+
+
+        <div className="shadow-overlay"></div>
+
+        <div data-speed="0.5" className='video-wrapper'>
+          <video
+            src="../videos/world_museum_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+
+          />
+          <div className="inset-shadow-bottom">
+
+          </div>
+        </div>
+
+      </div>
 
     </main>
   );

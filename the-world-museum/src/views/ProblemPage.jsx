@@ -181,6 +181,7 @@ const Problempage = () => {
     const verticalDistance = 300;
     const blackoutTime = "3";
 
+    const maxHeight = Math.max(window.innerHeight * 1.1, 4200);
 
 
     if (!isBreakdownShown) {
@@ -250,7 +251,7 @@ const Problempage = () => {
         //end logic
         .to(container.current, {
           duration: 0.6,
-          height: 4200,
+          height: maxHeight,
           ease: "power2.inOut",
         }, ">")
         .to(blackoutBox.current, {
@@ -386,7 +387,7 @@ const Problempage = () => {
   );
 
   return (
-    <main className="home" style={{ height: 1000 }} ref={container}>
+    <main className="home" style={{ height: "110vh" }} ref={container}>
 
       {/* Component 1 */}
       <div ref={aWrapper}>
@@ -449,7 +450,7 @@ const Problempage = () => {
             </p>
           </div>
 
-          <div className='b-image'><img src="images\white-gloves.png" alt="white gloves" /></div>
+          <div className='b-image'><img src="images\3d-scanning.jpg" alt="white gloves" /></div>
 
           <div className='b-2'>
             <p className='b-2-title font-inria-serif-bold font-size-32'>What does this mean?</p>
@@ -468,7 +469,7 @@ const Problempage = () => {
               ENABLING ACCURATE AND EFFICIENT TRACKING OF ALL ITEMS</p>
           </div>
 
-          <div className='c-image'><img src="images\paintings.png" alt="white gloves" /></div>
+          <div className='c-image'><img src="images\electronic-tag.jpg" alt="white gloves" /></div>
 
           <div className='c-2'>
             <p className='c-2-title font-inria-serif-bold font-size-32'>What does this mean?</p>
