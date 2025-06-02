@@ -30,6 +30,8 @@ const TimelinePage = () => {
   const skipAnimationButtonLowerHalf = useRef();
   const skipAnimationButton = useRef();
 
+  const finalChecklist = useRef();
+
   const scrollToStart = () => {
     const smoother = ScrollSmoother.get();
     if (smoother) {
@@ -167,10 +169,22 @@ const TimelinePage = () => {
           filter: 'blur(0.2px)',
         }, "<+=0.2");
 
+
+
+      if (index === sortedDivs.length - 1) {
+        tl.to(finalChecklist.current, {
+          opacity: 1,
+          duration: 0.3,
+          pointerEvents: "auto",
+          ease: "power2.out",
+        });
+      }
     });
+
+
   };
 
-  const maxPageHeight = 7500;
+  const maxPageHeight = 7300;
 
   const playAnimation = () => {
     if (inProgress) {
@@ -184,6 +198,7 @@ const TimelinePage = () => {
       onComplete: () => {
         gsap.set(timelineStartText1.current, { pointerEvents: "auto" });
         gsap.set(timelineEndText1.current, { pointerEvents: "auto" });
+
         setInProgress(false);
       },
     });
@@ -309,6 +324,7 @@ const TimelinePage = () => {
       onComplete: () => {
         gsap.set(timelineStartText1.current, { pointerEvents: "auto" });
         gsap.set(timelineEndText1.current, { pointerEvents: "auto" });
+        gsap.set(finalChecklist.current, { opacity: 1, pointerEvents: "auto" });
         setInProgress(false);
       },
     });
@@ -364,6 +380,114 @@ const TimelinePage = () => {
 
   };
 
+  const [isFirstPage, setIsFirstPage] = useState(true);
+  const nextPageButton = useRef();
+
+
+  const switchRequirementsPage = () => {
+    if (inProgress) return;
+    setInProgress(true);
+    const mainTl = gsap.timeline({
+      onComplete: () => {
+        setInProgress(false)
+        setIsFirstPage(!isFirstPage);
+      },
+    });
+
+
+    if (isFirstPage) {
+      mainTl.to(nextPageButton.current, {
+        duration: 0.6,
+        x: -130,
+        ease: "power3.inOut",
+
+      }, 0)
+        .to(nextPageButton.current, {
+          scale: 1,
+          duration: 0.4,
+          ease: "power3.inOut",
+          yoyo: true,
+          opacity: 0.2,
+          repeat: 1,
+          filter: 'blur(1px)',
+        }, 0.1);
+    } else {
+      mainTl.to(nextPageButton.current, {
+        duration: 0.6,
+        x: 0,
+        ease: "power3.inOut",
+      }, 0)
+        .to(nextPageButton.current, {
+          scale: 1,
+          duration: 0.4,
+          ease: "power3.inOut",
+          yoyo: true,
+          opacity: 0.2,
+          repeat: 1,
+          filter: 'blur(1px)',
+        }, 0.1);
+    }
+
+
+
+    const divs = Array.from(container.current.querySelectorAll('.tp-req-element-holder'));
+    const elements1 = Array.from(container.current.querySelectorAll('.tp-req1-subtitle1-wrapper'));
+    const elements0 = Array.from(container.current.querySelectorAll('.tp-req1-subtitle1-wrapper1'));
+
+    const checklistDiv = container.current.querySelector('.tp-final-checklist-list-div');
+    const Xdistance = -(checklistDiv.offsetWidth + 20);
+    console.log(Xdistance);
+
+
+    if (isFirstPage) {
+      divs.forEach((div, index) => {
+        mainTl
+          .to(div, {
+            duration: 0.6,
+            x: Xdistance,
+            delay: index * 0.1,
+            ease: "power3.inOut"
+          }, 0) // starts all on same timeline position
+          .to(elements0[index], {
+            duration: 0.6,
+            opacity: 1,
+            ease: "power3.inOut",
+            filter: 'blur(0px)',
+          }, 0 + index * 0.1)
+          .to(elements1[index], {
+            duration: 0.6,
+            opacity: 0,
+            ease: "power3.inOut",
+            filter: 'blur(2px)',
+          }, 0 + index * 0.1) // slightly offset to follow
+
+
+      });
+    } else {
+      divs.forEach((div, index) => {
+        mainTl
+          .to(div, {
+            duration: 0.6,
+            x: 0,
+            delay: index * 0.1,
+            ease: "power3.inOut"
+          }, 0)
+          .to(elements0[index], {
+            duration: 0.6,
+            opacity: 0,
+            ease: "power3.inOut",
+            filter: 'blur(2px)',
+          }, 0 + index * 0.1)
+          .to(elements1[index], {
+            duration: 0.6,
+            opacity: 1,
+            ease: "power3.inOut",
+            filter: 'blur(0px)',
+          }, 0 + index * 0.1);
+      });
+
+    }
+  };
 
   const timelineEndText1 = useRef();
   const timelineEndText2 = useRef();
@@ -388,7 +512,10 @@ const TimelinePage = () => {
         pointerEvents: 'none',
       });
 
+      gsap.set(finalChecklist.current, { opacity: 0, pointerEvents: "none" });
 
+      const elements0 = Array.from(container.current.querySelectorAll('.tp-req1-subtitle1-wrapper1'));
+      gsap.set(elements0, { opacity: 0, pointerEvents: "none", filter: 'blur(2px)' });
 
 
       // Initially show text1, hide text2 for start and end
@@ -849,7 +976,7 @@ const TimelinePage = () => {
           </div>
           <div className="tp-f-r-image-1 timeline-animated-element">
 
-                        <video
+            <video
               src="../videos/tour-gs.mp4"
               autoPlay
               muted
@@ -886,18 +1013,157 @@ const TimelinePage = () => {
         </div>
       </div>
 
-      <div className='tp-final-checklist-div'>
-        <p className='tp-main-title font-inria-serif-bold font-size-40'>Requirements Checklist.</p>
-        <div className='tp-main-title-line'></div>
-        <p className='tp-main-text font-instrument-sans font-size-20'>Below is a final checklist to ensure that each requirement is addressed within our proposed solution and timeline.
-        </p>
+
+
+
+      <div ref={finalChecklist}>
+        <div className='tp-final-checklist-div'>
+          <p className='tp-final-checklist-title font-inria-serif-bold font-size-24'>Proprosal Overview ~ Requirements Checklist.</p>
+          <div className='tp-final-checklist-line'></div>
+          <p className='tp-final-checklist-text font-instrument-sans font-size-16'>Below is a final checklist to ensure that each requirement is addressed within our proposed solution and timeline.
+          </p>
+        </div>
+
+
+        <div className='tp-req-element-view'>
+          <div className='tp-req-element-holder'></div>
+        </div>
+
+        <div className='tp-final-checklist-list-div'>
+
+          <div className='tp-req-element-view'>
+            <div className='tp-req-element-holder'>
+              <div className='tp-req1-subtitle1-wrapper'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>1. Populated Asset Register (Database)</p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 01 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>This was addressed initially in Phase 3 with data transfer and linkage efforts towards the new Collection Management System. This was then exapnded to remainder of the collection in the following phases.</p>
+              </div>
+              <div className='tp-spacer1'></div>
+              <div className='tp-req1-subtitle1-wrapper1'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>5. Enrichment of information in the digital register.</p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 05 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>This requirement will be fufilled for the entire collection as the proccesses used in Phase 5 are eventually repeated for the entire collection.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className='tp-spacer1'></div>
+
+
+
+          <div className='tp-req-element-view'>
+            <div className='tp-req-element-holder'>
+              <div className='tp-req1-subtitle1-wrapper'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>2. Locations of all objects recorded and tracked digitally. </p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 02 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>This would be initiated in Phase 3 with RFID/GPS tagging, and was directly addressed as apart of Objective 2, outlined in the SOLUTIONS page.</p>
+              </div>
+
+              <div className='tp-spacer1'></div>
+
+              <div className='tp-req1-subtitle1-wrapper1'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>6. Ensure safety, security and quality of objects.</p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 06 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>While no specific phase directly addresses this, the technologies and proccesses proposed under Objectives 1 and 3 were selected/developed with this requirement in mind.</p>
+              </div>
+
+            </div>
+          </div>
+
+
+
+          <div className='tp-spacer1'></div>
+
+
+          <div className='tp-req-element-view'>
+            <div className='tp-req-element-holder'>
+              <div className='tp-req1-subtitle1-wrapper'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>3. Standardised management processes.</p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 03 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>These process were established as apart of Objective 3 in the SOLUTIONS page and were used in Phases 3 and 5.</p>
+              </div>
+              <div className='tp-spacer1'></div>
+              <div className='tp-req1-subtitle1-wrapper1'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>7. Digital repatriation and knowledge sharing with the broader community.</p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 07 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>This requirement aligns with Objective 4, with initial efforts planned for Phase 4 and further scaled expansion for Phase 7 and beyond.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div className='tp-spacer1'></div>
+
+
+          <div className='tp-req-element-view'>
+            <div className='tp-req-element-holder'>
+              <div className='tp-req1-subtitle1-wrapper'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>4. High-quality images of objects across all collections.</p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 04 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>This will be fufiled as a result of the technologies used in Phase 3 and 5, respectively.</p>
+              </div>
+
+              <div className='tp-spacer1'></div>
+              <div className='tp-req1-subtitle1-wrapper1'>
+                <p className='tp-req1-subtitle1-title font-instrument-sans font-size-16'>8. A performant, consistent technology for managing assets.
+                </p>
+                <p className='tp-req1-subtitle1-section font-instrument-sans font-size-16'>( 08 )</p>
+                <div className='tp-req1-subtitle1-line'></div>
+                <p className='tp-req1-subtitle1-text font-instrument-sans font-size-16'>This will be implemented in Phase 2 with CMS installation, and SPECTRUM standard, whislt being enhanced through continuous improvements in Phase 6 and beyond.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='tp-text-logo-wrapper1'>
+          <div className='tp-text-logo'>      <a
+            href="https://www.adelaide.edu.au/learning/ua/media/2923/pwc-australia-client-briefing-pack-the-world-museum-002.pdf"
+            className="icon font-inria-serif-bold font-size-64 black"
+            target="_blank"
+            rel="noreferrer"
+          >
+            DI.
+          </a>
+            <a href="https://www.adelaide.edu.au/learning/ua/media/2923/pwc-australia-client-briefing-pack-the-world-museum-002.pdf" className='subtext font-size-12 font-instrument-sans black'>
+              <span style={{ marginLeft: '0px' }}>The</span>
+              <span style={{ marginLeft: '5px' }}>Digitisation</span>
+              <span style={{ marginLeft: '10px' }}>Initiative</span>
+            </a>
+          </div>
+        </div>
+
+        <div className='tp-next-page-button-wrapper'>
+          <div className='tp-next-page-button' onClick={switchRequirementsPage}>
+            <div ref={nextPageButton} className='tp-next-page-button-text font-instrument-sans font-size-14'>
+              <p className='tp-button-text0'>
+                <span className="left-text">Next Page?</span>
+                <span className="text-spacer" />
+                <span className="right-text">1 / 2</span>
+              </p>
+              <p className='tp-button-text1'>
+                <span className="left-text">Go Back?</span>
+                <span className="text-spacer" />
+                <span className="right-text">2 / 2</span>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div className='tp-checklist-div'></div>
 
 
 
-      <div className='f' style={{ top: 7000 }}>
+
+      <div className='f' style={{ top: 6800 }}>
         <div className='f-1'>
 
           <div className='f-1-container'>
