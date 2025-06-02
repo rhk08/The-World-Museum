@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import gsap from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -16,6 +16,12 @@ import Header from '../components/Header';
 
 export default function Router() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const goToObjective1 = () => {
+    navigate("/solutionpage?scroll=objective1");
+  };
+
 
   useGSAP(() => {
     // Kill any existing instance
@@ -43,7 +49,6 @@ export default function Router() {
 
   return (
     <div id="smooth-wrapper">
-
       <div id="smooth-content">
 
         <PageTransition key={location.pathname}>

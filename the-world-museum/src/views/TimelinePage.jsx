@@ -870,7 +870,7 @@ const TimelinePage = () => {
         <div className='tp-d-l'>
           <div className='tp-d-l-1 timeline-animated-element'>
             <p className='tp-d-l-1-title font-inria-serif-bold font-size-64'>Phase 5</p>
-            <p className='tp-d-l-1-text font-instrument-sans font-size-16'>Between months 7 and 12, either alongside or following the initial digitisation of selected objects, items flagged for additional information will undergo the standardized process outlined in Objective 3 abliet at a slower rate. This will include the creation of high-fidelity 3D models suitable for academic use. These detailed models will support research and can be loaned or shared, opening new opportunities for revenue and broader academic collaboration.</p>
+            <p className='tp-d-l-1-text font-instrument-sans font-size-16'>Between months 7 and 12, either alongside or following the initial digitisation of selected objects, items flagged for additional information will undergo the standardized process and frameworks outlined in Objective 3 abliet at a slower rate. This will include the creation of high-fidelity 3D models suitable for academic use. These detailed models will support research and can be loaned or shared, opening new opportunities for revenue and broader academic collaboration.</p>
           </div>
 
           <div className='tp-d-l-2 timeline-animated-element'>
