@@ -72,7 +72,7 @@ const SolutionPage = () => {
 
 
   return (
-    <main className="home" style={{ height: "21650px" }} ref={container}>
+    <main className="home" style={{ height: "21800px" }} ref={container}>
       <div className='sp-button-panel'>
         {/* <p className='sp-button-panel-title font-instrument-sans font-size-20'>SECTION SELECT</p>
         <div></div> */}
@@ -128,8 +128,8 @@ const SolutionPage = () => {
               For 2D imaging and photogrammetric capture (Fraunhofer IGD, 2025)
             </p>
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media' >
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: '250px' }} >
+              <img src="images\HighResCamera.jpg" alt="white gloves" />
             </div>
 
           </div>
@@ -141,8 +141,14 @@ const SolutionPage = () => {
               Captures precise geometry (Artec 3D, 2024)
             </p>
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media'>
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: '300px' }}>
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 100%', // 60% from the left, 30% from the top
+                display: 'block'
+              }} src="images\structured-light-3d-scanner.jpg" alt="white gloves" />
             </div>
           </div>
 
@@ -154,8 +160,14 @@ const SolutionPage = () => {
               Eliminates the need for manual repositioning (Ferguson, 2023)
             </p>
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media'>
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: '260px' }}>
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 100%', // 60% from the left, 30% from the top
+                display: 'block'
+              }} src="images\CYS_Product_Case_40_700x700.png" alt="white gloves" />
             </div>
           </div>
 
@@ -169,8 +181,8 @@ const SolutionPage = () => {
               Provides optimal lighting for different surfaces and materials (Richardson, 2024)
             </p>
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media' style={{ height: '174px' }}>
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: '300px' }}>
+              <img src="images\programmableLED.jpg" alt="white gloves" />
             </div>
           </div>
 
@@ -184,8 +196,8 @@ const SolutionPage = () => {
               Reads labels and inscriptions automatically (Terentia, 2024)
             </p>
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media'>
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: '300px' }}>
+              <img src="images\ocr-side-cameras.jpg" alt="white gloves" />
             </div>
           </div>
 
@@ -198,8 +210,8 @@ const SolutionPage = () => {
               Automatically link physical artifacts to digital metadata (Pixel Tech, 2025)
             </p>
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media'>
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: '280px' }}>
+              <img src="images\fx9600-fixed-rfid-reader-3__95959.jpg" alt="white gloves" />
             </div>
           </div>
 
@@ -337,13 +349,7 @@ const SolutionPage = () => {
         </div>
         <div style={{ height: 20 }}></div>
         <div className='sp-video-wrapper'>
-          <video
-            src="../videos/m2-res_1080p.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+          <img style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} src="images\rfid-tag-museum.jpg" alt="white gloves" />
         </div>
 
 
@@ -399,13 +405,7 @@ const SolutionPage = () => {
             </div>
             <div style={{ width: 20 }}></div>
             <div className='sp-video-wrapper' style={{ height: 400, width: 500 }}>
-              <video
-                src="../videos/m2-res_1080p.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <img style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} src="images\schindler-louvre-by-night-paris.jpg" alt="white gloves" />
             </div>
 
 
@@ -469,7 +469,13 @@ const SolutionPage = () => {
 
             <div className='sp-element1-spacer'></div>
             <div className='sp-element1-media' >
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 70%', // 60% from the left, 30% from the top
+                display: 'block'
+              }} src="images\collection-management-system.jpg" alt="white gloves" />
             </div>
 
           </div>
@@ -520,8 +526,15 @@ const SolutionPage = () => {
             <div style={{ height: 20 }}></div>
 
             <div className='sp-element1-spacer'></div>
-            <div className='sp-element1-media' >
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <div className='sp-element1-media' style={{ height: 400 }}>
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 20%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1',
+              }} src="images\Digital-Asset-Management_Media-Studio_devices.jpg" alt="white gloves" />
             </div>
 
           </div>
@@ -747,7 +760,7 @@ const SolutionPage = () => {
 
             <div className='sp-element1-spacer'></div>
             <div className='sp-element1-media' >
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+              <img src="images\ocr-camera.jpg" alt="white gloves" />
             </div>
 
           </div>
@@ -803,7 +816,14 @@ const SolutionPage = () => {
 
             <div className='sp-element1-spacer'></div>
             <div className='sp-element1-media' >
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 0%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1',
+              }} src="images\version-control.jpeg" alt="white gloves" />
             </div>
 
           </div>
@@ -859,7 +879,14 @@ const SolutionPage = () => {
 
             <div className='sp-element1-spacer'></div>
             <div className='sp-element1-media' >
-              <img src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 70%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1.1',
+              }} src="images\An-interactive-POI-in-a-museum-physical-space-and-an-RFID-tag-as-a-key.png" alt="white gloves" />
             </div>
 
           </div>
@@ -902,13 +929,14 @@ const SolutionPage = () => {
             </p>
             <div className='sp-obj1-list-element-spacer' style={{ width: 30 }}></div>
             <div className='sp-video-wrapper' style={{ height: 200, width: 400 }}>
-              <video
-                src="../videos/m2-res_1080p.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 70%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1',
+              }} src="images\data-centre.jpg" alt="white gloves" />
             </div>
           </div>
 
@@ -924,13 +952,14 @@ const SolutionPage = () => {
 
           <div className='sp-obj1-list-element'>
             <div className='sp-video-wrapper' style={{ height: 300, width: 500 }}>
-              <video
-                src="../videos/m2-res_1080p.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 70%',
+                display: 'block',
+                scale: '1',
+              }} src="images\anic_2.png" alt="white gloves" />
             </div>
             <div className='sp-obj1-list-element-spacer' style={{ width: 40 }}></div>
             <p className='font-instrument-sans font-size-20' style={{ width: 700, textAlign: 'justify' }}>
@@ -1076,13 +1105,14 @@ const SolutionPage = () => {
             </p>
             <div style={{ width: 40 }}></div>
             <div className='sp-video-wrapper' style={{ height: 200, width: 800 }}>
-              <video
-                src="../videos/m2-res_1080p.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 50%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1.5',
+              }} src="images\sketchfab.jpeg" alt="white gloves" />
             </div>
           </div>
 
@@ -1104,13 +1134,14 @@ const SolutionPage = () => {
           <div className='sp-obj1-list-element'>
 
             <div className='sp-video-wrapper' style={{ height: 250, width: 1200 }}>
-              <video
-                src="../videos/m2-res_1080p.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 50%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1.2',
+              }} src="images\met-museue-figure.jpg" alt="white gloves" />
             </div>
             <div style={{ width: 40 }}></div>
             <p className='font-instrument-sans font-size-20'>
@@ -1185,13 +1216,14 @@ const SolutionPage = () => {
             </div>
             <div style={{ width: 20 }}></div>
             <div className='sp-video-wrapper' style={{ height: 450, width: 520 }}>
-              <video
-                src="../videos/m2-res_1080p.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <img style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '45% 60%', // 60% from the left, 30% from the top
+                display: 'block',
+                scale: '1',
+              }} src="images\maingallery.png" alt="white gloves" />
             </div>
 
 
@@ -1255,16 +1287,51 @@ const SolutionPage = () => {
 
         <div className='sp-obj3-final-images-div'>
           <div className='sp-obj3-final-images-div-img1'>
-            <img className=".sp-obj3-image-element" src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <img style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: '45% 60%', // 60% from the left, 30% from the top
+              display: 'block',
+              scale: '1.5',
+            }} src="images\digital-exhibit.jpg" alt="white gloves" />
           </div>
           <div className='sp-obj3-final-images-div-img2'>
-            <img className=".sp-obj3-image-element" src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+            <img style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: '45% 60%', // 60% from the left, 30% from the top
+              display: 'block',
+              scale: '1',
+            }} src="images\gausian-splat.png" alt="white gloves" />
           </div>
           <div className='sp-obj3-final-images-div-img3'>
-            <img className=".sp-obj3-image-element" src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+
+
+            <img style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: '45% 60%', // 60% from the left, 30% from the top
+              display: 'block',
+              scale: '1',
+            }} src="images\australian-museum.png" alt="white gloves" />
           </div>
           <div className='sp-obj3-final-images-div-img4'>
-            <img className=".sp-obj3-image-element" src="images\clore-natural-history-centre.jpg" alt="white gloves" />
+
+
+
+
+
+            <img style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: '40% 50%', // 60% from the left, 30% from the top
+              display: 'block',
+              scale: '1',
+            }} src="images\river-connections.jpg" alt="white gloves" />
           </div>
         </div>
 
@@ -1272,8 +1339,6 @@ const SolutionPage = () => {
 
       <div ref={referencesRef} className='sp-references-wrapper'>
         <p className='sp-obj1-title font-inria-serif-bold font-size-40'>References.</p>
-
-
 
         <div className='sp-obj1-subtitle1-wrapper'>
           <p className='sp-obj1-subtitle1-title font-instrument-sans font-size-20'>HARVARD REFERENCING STYLE</p>
@@ -1418,7 +1483,7 @@ const SolutionPage = () => {
       </div>
 
 
-      <div className='f' style={{ top: 21150 }}>
+      <div className='f' style={{ top: 21300 }}>
         <div className='f-1'>
 
           <div className='f-1-container'>

@@ -144,9 +144,9 @@ const TimelinePage = () => {
           gsap.set(timelineEndText1.current, { pointerEvents: "auto" });
 
           if (smoother) {
-            smoother.scrollTo(timelineStart.current, true, "center center");
+            smoother.scrollTo(timelineStart.current, true, "center+=100 center");
           }
-          
+
           setInProgress(false);
         } : undefined,
       });
@@ -455,8 +455,6 @@ const TimelinePage = () => {
 
     const checklistDiv = container.current.querySelector('.tp-final-checklist-list-div');
     const Xdistance = -(checklistDiv.offsetWidth + 20);
-    console.log(Xdistance);
-
 
     if (isFirstPage) {
       divs.forEach((div, index) => {
@@ -466,21 +464,25 @@ const TimelinePage = () => {
             x: Xdistance,
             delay: index * 0.1,
             ease: "power3.inOut"
-          }, 0) // starts all on same timeline position
-          .to(elements0[index], {
+          }, 0);
+
+        if (elements0[index]) {
+          mainTl.to(elements0[index], {
             duration: 0.6,
             opacity: 1,
             ease: "power3.inOut",
             filter: 'blur(0px)',
-          }, 0 + index * 0.1)
-          .to(elements1[index], {
+          }, 0 + index * 0.1);
+        }
+
+        if (elements1[index]) {
+          mainTl.to(elements1[index], {
             duration: 0.6,
             opacity: 0,
             ease: "power3.inOut",
             filter: 'blur(2px)',
-          }, 0 + index * 0.1) // slightly offset to follow
-
-
+          }, 0 + index * 0.1);
+        }
       });
     } else {
       divs.forEach((div, index) => {
@@ -490,19 +492,25 @@ const TimelinePage = () => {
             x: 0,
             delay: index * 0.1,
             ease: "power3.inOut"
-          }, 0)
-          .to(elements0[index], {
+          }, 0);
+
+        if (elements0[index]) {
+          mainTl.to(elements0[index], {
             duration: 0.6,
             opacity: 0,
             ease: "power3.inOut",
             filter: 'blur(2px)',
-          }, 0 + index * 0.1)
-          .to(elements1[index], {
+          }, 0 + index * 0.1);
+        }
+
+        if (elements1[index]) {
+          mainTl.to(elements1[index], {
             duration: 0.6,
             opacity: 1,
             ease: "power3.inOut",
             filter: 'blur(0px)',
           }, 0 + index * 0.1);
+        }
       });
 
     }
