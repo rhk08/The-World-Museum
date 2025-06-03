@@ -257,8 +257,7 @@ const SolutionPage = () => {
               -
             </p>
             <div className='sp-obj1-list-element-spacer'></div>
-            <p className='font-instrument-sans font-size-20'>
-              Estimated Setup Cost: $50,000 to $360,000 depending on configuration.
+            <p className='font-instrument-sans font-size-20'>Estimated Setup Cost: $50,000 to $360,000 depending on configuration.
             </p>
           </div>
 
@@ -268,7 +267,7 @@ const SolutionPage = () => {
             <p className='font-instrument-sans font-size-20'>
               -
             </p>
-            <div className='sp-obj1-list-element-spacer'></div>
+            <div style={{ width: 20 }}></div>
             <p className='font-instrument-sans font-size-20'>
               Energy Efficiency:
               While the system can be energy-intensive, this can be mitigated through off-peak operation and enabling low-power idle modes, supporting more sustainable usage.

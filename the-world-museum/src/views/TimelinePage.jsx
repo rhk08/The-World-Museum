@@ -33,6 +33,10 @@ const TimelinePage = () => {
   const finalChecklist = useRef();
 
   const scrollToStart = () => {
+
+    if (inProgress) {
+      return;
+    }
     const smoother = ScrollSmoother.get();
     if (smoother) {
       smoother.scrollTo(timelineStart.current, true, "center center");
@@ -40,6 +44,9 @@ const TimelinePage = () => {
   };
 
   const scrollToEnd = () => {
+    if (inProgress) {
+      return;
+    }
     const smoother = ScrollSmoother.get();
     if (smoother) {
       smoother.scrollTo(timelineEnd.current, true, "center center");
@@ -47,6 +54,8 @@ const TimelinePage = () => {
   };
 
   const animateAndScrollDivs = () => {
+    setInProgress(true);
+
     const divs = Array.from(container.current.querySelectorAll('.timeline-animated-element'));
     const smoother = ScrollSmoother.get();
     const containerRect = container.current.getBoundingClientRect();
@@ -130,6 +139,16 @@ const TimelinePage = () => {
             ease: "power3.inOut",
           });
         } : undefined,
+        onComplete: index === sortedDivs.length - 1 ? () => {
+          gsap.set(timelineStartText1.current, { pointerEvents: "auto" });
+          gsap.set(timelineEndText1.current, { pointerEvents: "auto" });
+
+          if (smoother) {
+            smoother.scrollTo(timelineStart.current, true, "center center");
+          }
+          
+          setInProgress(false);
+        } : undefined,
       });
       // range: 20 to 50
       // Animate main div
@@ -199,7 +218,7 @@ const TimelinePage = () => {
         gsap.set(timelineStartText1.current, { pointerEvents: "auto" });
         gsap.set(timelineEndText1.current, { pointerEvents: "auto" });
 
-        setInProgress(false);
+        // setInProgress(false);
       },
     });
 
