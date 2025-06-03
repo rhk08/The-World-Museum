@@ -72,7 +72,7 @@ const SolutionPage = () => {
 
 
   return (
-    <main className="home" style={{ height: "18000px" }} ref={container}>
+    <main className="home" style={{ height: "21650px" }} ref={container}>
       <div className='sp-button-panel'>
         {/* <p className='sp-button-panel-title font-instrument-sans font-size-20'>SECTION SELECT</p>
         <div></div> */}
@@ -1280,13 +1280,145 @@ const SolutionPage = () => {
           <p className='sp-obj1-subtitle1-section font-instrument-sans font-size-20'>( 00 )</p>
           <div className='sp-obj1-subtitle1-line'></div>
         </div>
-        <p className='sp-obj1-text1 font-instrument-sans font-size-20'>
-          kill me.
+        <p className='sp-obj1-text1 font-instrument-sans font-size-16' style={{ whiteSpace: 'pre-line', textAlign: 'justify', width: '98%', margin: 'auto' }}>
+          - Anderson, N.I., Nault, J. & Villanueva, L.J. 2023, Gimme Three Steps: A Mass Digitization Method at the Smithsonian, Archiving Conference, 20(1), pp.35–42, viewed 28 May 2025, https://library.imaging.org/archiving/articles/20/1/35.
+          <br />
+          <br />
+          - Armoli. 2024, Tracking Art: GPS Keeps Treasures in Sight, Linkedin.com, viewed 26 May 2025, https://www.linkedin.com/pulse/tracking-art-gps-keeps-treasures-sight-armoli-sb0uf/.
+          <br />
+          <br />
+          - Artec 3D. 2024, Heritage preservation | Professional 3D scanning solutions, artec3d.com, viewed 3 Jun 2025, https://www.artec3d.com/3d-scanning-solutions/heritage-preservation.
+          <br />
+          <br />
+          - Assetpulse. 2023, RFID vs. BLE: Capabilities and Comparison of Asset Tracking Technologies - Assetpulse Blog, Assetpulse, viewed 26 May 2025, https://www.assetpulse.com/blog/rfid-vs-ble-technology-comparisons/.
+          <br />
+          <br />
+          - Atrak. 2025, GPS Tracking Systems in Australia: Understanding its Cost & Value, Atrak Asset Tracking, viewed 26 May 2025, https://atrak.com.au/blog/index.php/2025/03/25/gps-tracking-systems-in-australia/.
+          <br />
+          <br />
+          - Bishop, B.W. 2025, Museums have tons of data, and AI could make it more accessible - but standardizing and organizing it across fields won’t be easy, The Conversation, viewed 20 May 2025, https://theconversation.com/museums-have-tons-of-data-and-ai-could-make-it-more-accessible-but-standardizing-and-organizing-it-across-fields-wont-be-easy-250487.
+          <br />
+          <br />
+          - Bishop, B.W., Gavel, S.W.T., Chapin, E.G., Kansa, S., Thomer, A. & Ramdeen, S. 2023, From Ice Cores to Dinosaurs: Curation Behaviors of Physical Collections Managers, asist&t, viewed 21 May 2025, https://asistdl.onlinelibrary.wiley.com/doi/10.1002/pra2.810.
+          <br />
+          <br />
+          - Brickhouse Security. 2025, GPS Asset Trackers: GPS Asset Tracking Devices for Business, Brickhousesecurity, viewed 26 May 2025, https://www.brickhousesecurity.com/gps-trackers/asset-tracking-devices.
+          <br />
+          <br />
+          - Camcode. 2025, What is Asset Tracking? How It Works, Purpose, Benefits, Camcode, viewed 26 May 2025, https://www.camcode.com/blog/what-is-asset-tracking/?srsltid=AfmBOooE6enTHHPnhIrpfXR0Pwew3UOnqyacn6eiyzOo-yRwya0iVEH7.
+          <br />
+          <br />
+          - Carter, L. 2020, 10 of the World’s Leading Museums You Can Explore Digitally, Architectural Digest, viewed 3 Jun 2025, https://www.architecturaldigest.com/story/worlds-leading-museums-you-can-explore-digitally/.
+          <br />
+          <br />
+          - Comparesoft. n.d., Active RFID vs. Passive RFID: Which to Choose & When to Use, Comparesoft, viewed 26 May 2025, https://comparesoft.com/assets-tracking-software/rfid-asset-tracking/active-rfid-vs-passive-rfid-tags/.
+          <br />
+          <br />
+          - Creative Commons. 2014, Sketchfab announces CC licensing; Microsoft, HTC, and British Museum early adopters, creativecommons.org, viewed 3 Jun 2025, https://creativecommons.org/2014/10/30/sketchfab-announces-cc-licensing-microsoft-htc-and-british-museum-early-adopters/.
+          <br />
+          <br />
+          - Dagenais, F. n.d., Artificial Intelligence in Museums, Transkribus.org, viewed 28 May 2025, https://www.transkribus.org/blog/ai-in-museums.
+          <br />
+          <br />
+          - Ferguson, A. 2023, Enhancing the Museum Experience with Digital Interpretation, Paisley Museum Reimagined, viewed 3 Jun 2025, https://reimagined.paisleymuseum.org/news-stories/360-stills-capture-enhancing-museum-experience-digital-interpretation/.
+          <br />
+          <br />
+          - Fraunhofer Institute for Computer Graphics Research IGD. 2025, Fraunhofer IGD develops automated robotic arm to scan cultural objects in 3D, now cooperating with Phase One, Fraunhofer IGD, viewed 3 Jun 2025, https://www.igd.fraunhofer.de/en/media-center/press-releases/fraunhofer-igd-develops-automated-robotic-arm-to-scan-cultural-objects-in-3D.html.
+          <br />
+          <br />
+          - Gallery Systems. 2018, TMS FAQs, Gallery Systems, viewed 26 May 2025, https://www.gallerysystems.com/faq_category/tms-faqs/page/2/.
+          <br />
+          <br />
+          - Gallery Systems. 2021, FAQ Categories TMS Collections, Gallery Systems, viewed 26 May 2025, https://www.gallerysystems.com/faq_category/tms-collections/.
+          <br />
+          <br />
+          - Gallery Systems. 2023a, Do Museums Need a DAMS?, Gallery Systems, viewed 27 May 2025, https://www.gallerysystems.com/museums-need-dams/.
+          <br />
+          <br />
+          - Gallery Systems. 2023b, What is the price of TMS Media Studio?, Gallery Systems, viewed 26 May 2025, https://www.gallerysystems.com/faq-items/what-is-the-price-of-tms-media-studio/.
+          <br />
+          <br />
+          - Gallery Systems. 2025a, Digital Asset Management, Gallery Systems, viewed 27 May 2025, https://www.gallerysystems.com/solutions/digital-asset-management/.
+          <br />
+          <br />
+          - Gallery Systems. 2025b, TMS Training, Gallery Systems, viewed 26 May 2025, https://www.gallerysystems.com/client-support/training/tms-collections-management-training/.
+          <br />
+          <br />
+          - Government of Canada. 2020, TMS Collections and eMuseum by Gallery Systems - Profile, Canada.ca, viewed 26 May 2025, https://www.canada.ca/en/heritage-information-network/services/collections-management-systems/collections-management-software-vendor-profiles/tms-emuseum-gallery-systems-profile.html.
+          <br />
+          <br />
+          - Hanselman, A. 2018, The Museum System, Cit | Collections Information Technology, viewed 26 May 2025, https://www.go2cit.nl/en/products-and-services/the-museum-system/.
+          <br />
+          <br />
+          - iSample. n.d., Internet of Samples: iSamples, iSamples, viewed 21 May 2025, https://isamples.org/.
+          <br />
+          <br />
+          - Kiessling, K. 2024, Rockwell Museum Launches Free, Virtual Field Trip Program, Times Union, viewed 3 Jun 2025, https://www.timesunion.com/art/article/norman-rockwell-museum-launches-free-virtual-19992939.php/.
+          <br />
+          <br />
+          - Martial, A. 2023, RFID Tag Costs in 2025: Complete Breakdown by Type, System, & Setup, KORONA POS, viewed 26 May 2025, https://koronapos.com/blog/rfid-tag-cost/.
+          <br />
+          <br />
+          - Moore, L. 2020, Smart Museums: How RFID is Making its Mark, atlasRFIDstore, viewed 28 May 2025, https://www.atlasrfidstore.com/rfid-insider/smart-museums-how-rfid-is-making-its-mark/.
+          <br />
+          <br />
+          - Moore, L. 2020, Smart Museums: How RFID is Making its Mark, atlasRFIDstore, viewed 25 May 2025, https://www.atlasrfidstore.com/rfid-insider/smart-museums-how-rfid-is-making-its-mark/?srsltid=AfmBOoojB_t3DAwWO-JukxfEYkgSfxI5ztJTH3yiLv1RMF7MJJv_wQHn.
+          <br />
+          <br />
+          - Museologi.st. 2019, Innovating with 3D technologies at the British Museum, museologi.st, viewed 3 Jun 2025, https://museologi.st/projects/3d-british-museum/.
+          mytracking. 2020, GPS Tracking Use Case: Securing High-Value Artworks with GPS Tracking Technology, mytrackingdevices.com, viewed 26 May 2025, https://mytrackingdevices.com/gps-tracking-high-value-artwork/.
+          <br />
+          <br />
+          - National Archives and Records Administration. 2023, Digitization Quality Management Guide, National Archives and Records Administration, viewed 28 May 2025, https://www.archives.gov/files/records-mgmt/policy/digitization-quality-mgmt-guide.pdf.
+          <br />
+          <br />
+          - Neel, A. 2019, Assorted picture frames on wall, Unsplash, viewed 26 May 2025, https://unsplash.com/photos/assorted-picture-frames-on-wall-acowe0pCVBg.
+          Niederhelman, E.F. 2025, It Could Take Lifetimes To Catalog the Harvard Zoology Museum’s Collections Online. AI Tools Might Help., The Harvard Crimson, viewed 27 May 2025, https://www.thecrimson.com/article/2025/2/20/zoology-museum-ai/.
+          <br />
+          <br />
+          - Pixel Tech. 2025, RFID in Museums Tracking and Protecting Artifacts in 2025 - Pixel Tech USA/UK/UAE/India, Pixel Tech, viewed 28 May 2025, https://pixeltech.ai/rfid-in-museums-tracking-and-protecting-artifacts-in-2025.
+          <br />
+          <br />
+          - RFID Journal. 2010, Is There an RFID Tag That Operates at -80 Degrees Celsius?, RFID Journal, viewed 26 May 2025, https://www.rfidjournal.com/news/is-there-an-rfid-tag-that-operates-at-80-degrees-celsius/176590/.
+          <br />
+          <br />
+          - Richardson, J. 2024, 3D Scanning, VR Simulations and the Future of Museum Collections, MuseumNext, viewed 28 May 2025, https://www.museumnext.com/article/3d-scanning-vr-simulations-and-the-future-of-museum-collections/.
+          <br />
+          <br />
+          - Richardson, J. 2024, LED Lighting for Museums: Enhancing Exhibitions, Sustainability, and Visitor Experience, MuseumNext, viewed 3 Jun 2025, https://www.museumnext.com/article/led-lighting-for-museums-enhancing-exhibitions-sustainability-and-visitor-experience/.
+          <br />
+          <br />
+          - Sketchfab. n.d., Virtual Reality & 3D for Cultural Heritage, sketchfab.com, viewed 3 Jun 2025, https://sketchfab.com/museums.
+          <br />
+          <br />
+          - Smithsonian Institution. 2023, The Digital Asset Management System (DAMS) at the Smithsonian Institution, Smithsonian Institution, viewed 28 May 2025, https://www.si.edu/sites/default/files/unit/OCIO/si_dams_onesheet_2023.pdf?utm_source=chatgpt.com.
+          <br />
+          <br />
+          - Spectrum. n.d., Introduction to Spectrum, Spectrum, viewed 28 May 2025, https://collectionstrust.org.uk/spectrum/spectrum-5/.
+          <br />
+          <br />
+          - Spectrum. n.d., Training for your team, Spectrum, viewed 28 May 2025, https://collectionstrust.org.uk/hire-us/training-for-your-team/.
+          <br />
+          <br />
+          - Tallon, L. 2018, Scaling the Mission: The Met Collection API, Metmuseum.org, viewed 3 Jun 2025, https://www.metmuseum.org/perspectives/met-collection-api-2.
+          <br />
+          <br />
+          - Tech, P. 2025, RFID in Museums Tracking and Protecting Artifacts in 2025 - Pixel Tech USA/UK/UAE/India, Pixeltech.ai, viewed 3 Jun 2025, https://pixeltech.ai/rfid-in-museums-tracking-and-protecting-artifacts-in-2025/.
+          <br />
+          <br />
+          - Terentia. 2024, Transforming Museum Workflows with Artificial Intelligence (AI), American Alliance of Museums, viewed 3 Jun 2025, https://www.aam-us.org/2024/12/16/transforming-museum-workflows-with-artificial-intelligence-ai/.
+          <br />
+          <br />
+          - Varjo.com. 2024, Photogrammetry vs. NeRFs vs. gaussian splatting – pros and cons | Teleport, Varjo, viewed 3 Jun 2025, https://teleport.varjo.com/blog/photogrammetry-vs-nerfs-gaussian-splatting-pros-and-cons.
+          <br />
+          <br />
+          - Ward, E. 2024, A group of people walking around a museum, Unsplash.com, viewed 26 May 2025, https://unsplash.com/photos/a-group-of-people-walking-around-a-museum-nN-6GzhGZIA/.
+
         </p>
       </div>
 
 
-      <div className='f' style={{ top: 17500 }}>
+      <div className='f' style={{ top: 21150 }}>
         <div className='f-1'>
 
           <div className='f-1-container'>
